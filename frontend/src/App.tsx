@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Settings, Play, Pause, Download, Mic, Plus, FileText, Upload, Volume2, Trash2, Loader2, Save, FolderOpen, Copy, CheckCircle, ArrowUpDown, GripVertical, X, ChevronDown, ChevronUp, Image as ImageIcon, Video, User, Wand2 } from 'lucide-react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import localforage from 'localforage';
 import VideoStudio from './VideoStudio';
 import type { ScriptLine, TimelineClip, TimelineVideoClip, VoiceParams, RenderProgress, CharacterMetadata } from './types';
 import { API } from './config';
@@ -972,16 +973,14 @@ function App() {
     reader.readAsText(file);
   };
 
-  const handleSyncToTimeline = () => {
+  const handleSyncToTimeline = async () => {
     let count = 0;
     const newVideoClips: TimelineVideoClip[] = [];
-    
+
     try {
-      const nodesStr = localStorage.getItem('video_nodes');
-      const edgesStr = localStorage.getItem('video_edges');
-      if (nodesStr && edgesStr) {
-        const nodes = JSON.parse(nodesStr);
-        const edges = JSON.parse(edgesStr);
+      const nodes = await localforage.getItem<any[]>('video_nodes');
+      const edges = await localforage.getItem<any[]>('video_edges');
+      if (nodes && edges) {
         
         // Lấy danh sách video đã render xong
         const videoNodes = nodes.filter((n: any) => n.type === 'video' && n.data?.videoUrl);
