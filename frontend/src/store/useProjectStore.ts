@@ -1,10 +1,11 @@
 // ==========================================================================
 // store/useProjectStore.ts
 // Global project state — script, timeline clips, voice settings, etc.
-// Persisted to localStorage so state survives page refresh.
+// Persisted to IndexedDB (via localForage) so state survives page refresh.
 // ==========================================================================
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import localforage from 'localforage';
 import type { ScriptLine, TimelineClip, TimelineVideoClip, VoiceParams, CharacterMetadata, RenderProgress } from '../types';
 
 interface ProjectState {
@@ -53,52 +54,42 @@ const initialScript: ScriptLine[] = [
   { id: 2, speaker: 'elara', text: 'Cậu không thể là người "làm" mọi việc. Cậu phải là người "hướng dẫn".' },
 ];
 
-function loadFromStorage<T>(key: string, fallback: T): T {
-  try {
-    const raw = localStorage.getItem(key);
-    if (!raw) return fallback;
-    return JSON.parse(raw) as T;
-  } catch {
-    return fallback;
-  }
-}
-
 export const useProjectStore = create<ProjectState>()(
   persist(
     (set) => ({
       // ── Active tab ───────────────────────────────────────────────────────
-      activeTab: (localStorage.getItem('audiobook_active_tab') as 'audio' | 'video' | 'post-production') || 'audio',
+      activeTab: 'audio',
       setActiveTab: (tab) => set({ activeTab: tab }),
 
       // ── Script ──────────────────────────────────────────────────────────
-      script: loadFromStorage<ScriptLine[]>('audiobook_script', initialScript),
+      script: initialScript,
       setScript: (scriptOrUpdater) =>
         set((state) => ({
           script: typeof scriptOrUpdater === 'function' ? scriptOrUpdater(state.script) : scriptOrUpdater,
         })),
 
       // ── Timeline: Audio ─────────────────────────────────────────────────
-      timelineClips: loadFromStorage<TimelineClip[]>('audiobook_timeline_clips', []),
+      timelineClips: [],
       setTimelineClips: (clipsOrUpdater) =>
         set((state) => ({
           timelineClips: typeof clipsOrUpdater === 'function' ? clipsOrUpdater(state.timelineClips) : clipsOrUpdater,
         })),
 
       // ── Timeline: Video ─────────────────────────────────────────────────
-      timelineVideoClips: loadFromStorage<TimelineVideoClip[]>('audiobook_timeline_video_clips', []),
+      timelineVideoClips: [],
       setTimelineVideoClips: (clipsOrUpdater) =>
         set((state) => ({
           timelineVideoClips: typeof clipsOrUpdater === 'function' ? clipsOrUpdater(state.timelineVideoClips) : clipsOrUpdater,
         })),
 
       // ── Voice settings ───────────────────────────────────────────────────
-      lockedVoices: loadFromStorage<Record<string, boolean>>('audiobook_locked_voices', {}),
+      lockedVoices: {},
       setLockedVoices: (voicesOrUpdater) =>
         set((state) => ({
           lockedVoices: typeof voicesOrUpdater === 'function' ? voicesOrUpdater(state.lockedVoices) : voicesOrUpdater,
         })),
 
-      speakerVoiceParams: loadFromStorage<Record<string, VoiceParams>>('audiobook_voice_params', {}),
+      speakerVoiceParams: {},
       setSpeakerVoiceParams: (paramsOrUpdater) =>
         set((state) => ({
           speakerVoiceParams: typeof paramsOrUpdater === 'function' ? paramsOrUpdater(state.speakerVoiceParams) : paramsOrUpdater,
@@ -122,12 +113,12 @@ export const useProjectStore = create<ProjectState>()(
       flowkitProjectId: 'a59651a1-70ff-44b6-ac42-c26d90ad28ef',
       setFlowkitProjectId: (id) => set({ flowkitProjectId: id }),
 
-      globalArtStyle: localStorage.getItem('audiobook_global_art_style') || '',
+      globalArtStyle: '',
       setGlobalArtStyle: (style) => set({ globalArtStyle: style }),
     }),
     {
       name: 'audiobook-project',
-      // Only persist non-sensitive, serializable state
+      storage: createJSONStorage(() => localforage),
       partialize: (state) => ({
         activeTab: state.activeTab,
         script: state.script,

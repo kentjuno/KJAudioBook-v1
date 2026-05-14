@@ -2,34 +2,12 @@ import { useCallback, useMemo, useRef } from 'react';
 import React from 'react';
 import { useNodesState, useEdgesState, addEdge } from '@xyflow/react';
 import type { Connection, Edge, Node } from '@xyflow/react';
+import localforage from 'localforage';
 import type { CharacterMetadata } from '../types';
 import AssetNodeCard from '../components/videostudio/AssetNodeCard';
 import SceneNodeCard from '../components/videostudio/SceneNodeCard';
 import VideoNodeCard from '../components/videostudio/VideoNodeCard';
 import DeletableEdge from '../components/videostudio/DeletableEdge';
-
-function loadInitialNodes(): Node[] {
-  const saved = localStorage.getItem('video_nodes');
-  if (!saved) return [];
-  try {
-    return JSON.parse(saved).map((n: Node) => ({
-      ...n,
-      data: {
-        ...n.data,
-        isGeneratingVideo: n.type === 'video' && !(n.data as any).videoUrl ? true : false,
-        isGeneratingFrame: false,
-      },
-    }));
-  } catch {
-    return [];
-  }
-}
-
-function loadInitialEdges(): Edge[] {
-  const saved = localStorage.getItem('video_edges');
-  if (!saved) return [];
-  try { return JSON.parse(saved); } catch { return []; }
-}
 
 export function useNodeGraph({
   charactersMetadata,
@@ -38,18 +16,43 @@ export function useNodeGraph({
   charactersMetadata: Record<string, CharacterMetadata>;
   onLineIdsChange: (ids: number[]) => void;
 }) {
-  const [nodes, setNodes, onNodesChange] = useNodesState(loadInitialNodes());
-  const [edges, setEdges, onEdgesChange] = useEdgesState(loadInitialEdges());
+  const [nodes, setNodes, onNodesChange] = useNodesState<Node>([]);
+  const [edges, setEdges, onEdgesChange] = useEdgesState<Edge>([]);
   const [reactFlowInstance, setReactFlowInstance] = React.useState<any>(null);
+  const isHydrated = useRef(false);
 
   const nodesRef = useRef(nodes);
   const edgesRef = useRef(edges);
   React.useEffect(() => { nodesRef.current = nodes; }, [nodes]);
   React.useEffect(() => { edgesRef.current = edges; }, [edges]);
 
+  // Load nodes and edges from IndexedDB on mount
   React.useEffect(() => {
-    localStorage.setItem('video_nodes', JSON.stringify(nodes));
-    localStorage.setItem('video_edges', JSON.stringify(edges));
+    Promise.all([
+      localforage.getItem<Node[]>('video_nodes'),
+      localforage.getItem<Edge[]>('video_edges'),
+    ]).then(([savedNodes, savedEdges]) => {
+      if (savedNodes) {
+        setNodes(savedNodes.map((n) => ({
+          ...n,
+          data: {
+            ...n.data,
+            isGeneratingVideo: n.type === 'video' && !(n.data as any).videoUrl ? true : false,
+            isGeneratingFrame: false,
+          },
+        })));
+      }
+      if (savedEdges) setEdges(savedEdges);
+      isHydrated.current = true;
+    });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Persist to IndexedDB whenever the graph changes (skip before hydration)
+  React.useEffect(() => {
+    if (!isHydrated.current) return;
+    localforage.setItem('video_nodes', nodes);
+    localforage.setItem('video_edges', edges);
   }, [nodes, edges]);
 
   const nodeTypes = useMemo(() => ({ asset: AssetNodeCard, scene: SceneNodeCard, video: VideoNodeCard }), []);
