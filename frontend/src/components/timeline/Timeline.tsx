@@ -92,6 +92,7 @@ export function Timeline({
           <button
             onClick={toggleTimelinePlay}
             className={`p-1.5 rounded-full ${isPlayingTimeline ? 'bg-amber-500 text-slate-900' : 'bg-slate-700 hover:bg-slate-600 text-amber-400'}`}
+            title={isPlayingTimeline ? 'Tạm dừng (Space)' : 'Phát timeline (Space)'}
           >
             {isPlayingTimeline
               ? <Pause className="w-4 h-4" fill="currentColor" />
@@ -108,6 +109,7 @@ export function Timeline({
             <button
               onClick={() => setActiveTab('post-production')}
               className="ml-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors text-xs font-semibold rounded"
+              title="Chuyển sang Post-Production để Mix"
             >
               Sync to Post-Production
             </button>
@@ -124,9 +126,9 @@ export function Timeline({
 
           {/* Zoom */}
           <div className="flex items-center gap-1 ml-4 bg-slate-900 rounded border border-slate-700 px-2 py-1">
-            <button onClick={() => setZoomLevel(Math.max(10, zoomLevel - 10))} className="text-slate-400 hover:text-amber-400">-</button>
+            <button onClick={() => setZoomLevel(Math.max(10, zoomLevel - 10))} className="text-slate-400 hover:text-amber-400" title="Thu nhỏ timeline">-</button>
             <span className="text-[10px] text-slate-500 w-8 text-center">{zoomLevel}%</span>
-            <button onClick={() => setZoomLevel(Math.min(200, zoomLevel + 10))} className="text-slate-400 hover:text-amber-400">+</button>
+            <button onClick={() => setZoomLevel(Math.min(200, zoomLevel + 10))} className="text-slate-400 hover:text-amber-400" title="Phóng to timeline">+</button>
           </div>
         </div>
       </div>

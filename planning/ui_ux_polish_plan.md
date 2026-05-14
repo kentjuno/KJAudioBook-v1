@@ -73,7 +73,8 @@
 
 ## Day 2 — Ergonomic refinements
 
-### [ ] 4. Tooltip pass for all icon-only buttons
+### [x] 4. Tooltip pass for all icon-only buttons
+Added `title=` to: VideoClip delete X, AudioClip delete X, Timeline play/pause, zoom +/-, Sync-to-Post button, SceneNodeCard "Frame" button. Other buttons already had titles or visible text labels that disambiguate them.
 - **Files:** ScriptSidebar (per-line buttons), AudioClip, VideoClip, asset cards
 - **Today:** Several icon-only buttons (delete, drag handle, chevron, etc.) have no `title=`
 - **Change:** Add `title="..."` to each, in Vietnamese to match the UI language

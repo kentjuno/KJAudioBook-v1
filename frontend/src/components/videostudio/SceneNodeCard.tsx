@@ -70,6 +70,7 @@ const SceneNodeCard = ({ id, data, selected }: NodeProps) => {
             onClick={() => context?.onGenFrame(id)}
             disabled={isGenerating || isGeneratingVideo}
             className="px-2 py-1 bg-indigo-600 hover:bg-indigo-500 disabled:bg-indigo-600/50 text-white rounded text-[10px] font-medium transition-colors flex items-center gap-1"
+            title="Sinh ảnh frame (starting image cho video)"
           >
             {isGenerating ? <Loader2 className="w-3 h-3 animate-spin" /> : <Play className="w-3 h-3" />}
             {isGenerating ? 'Gen...' : 'Frame'}

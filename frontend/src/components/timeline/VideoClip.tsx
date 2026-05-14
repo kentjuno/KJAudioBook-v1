@@ -57,6 +57,7 @@ export function VideoClip({
           <button
             onClick={onDelete}
             className="text-indigo-200 hover:text-red-400 bg-transparent p-0.5 rounded transition-colors"
+            title="Xóa clip video"
           >
             <X className="w-3 h-3" />
           </button>

@@ -76,6 +76,7 @@ export function AudioClip({
         <button
           onClick={(e) => onDelete(e, clip.id)}
           className={`${isSelected ? 'text-indigo-100 hover:text-red-300 hover:bg-indigo-500' : 'text-slate-900 hover:text-red-700 hover:bg-amber-400'} bg-transparent p-0.5 rounded transition-colors`}
+          title="Xóa clip audio"
         >
           <X className="w-3 h-3" />
         </button>
