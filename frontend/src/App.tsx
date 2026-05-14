@@ -224,9 +224,10 @@ function App() {
     loadMetadata();
   }, []);
 
-
+  useEffect(() => {
     const handleGlobalMouseMove = (e: MouseEvent) => {
       if (!draggingTimelineClipId && !draggingVideoClipId && !resizingVideoClipId) return;
+
       
       const deltaX = e.clientX - timelineDragStartX;
       const deltaSeconds = deltaX / zoomLevel;
