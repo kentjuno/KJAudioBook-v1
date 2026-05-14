@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "LLM Tool Calling Loop",
+    "explanation": "A process where an agent detects tool calls requested by the LLM, resolves the function names to local Python implementations, executes these functions, and then performs a second LLM API call containing the tool results to generate a final, informed response.",
+    "importance": "Enables agents to interact with external data and execute code-based tasks dynamically based on user input."
+  },
+  {
+    "concept": "Nexus Platform Architecture",
+    "explanation": "An open-source agent development platform built on Streamlit that integrates agent profile management with both native (Python code) and semantic (LLM prompt-based) action definitions.",
+    "importance": "Provides a structured framework for rapidly prototyping, testing, and hosting AI agents with customizable personas and tool-use capabilities."
+  },
+  {
+    "concept": "Streamlit in AI Agents",
+    "explanation": "A Python-based framework used for building rapid, interactive dashboards and web interfaces specifically for displaying agent interactions and system states.",
+    "importance": "Simplifies the creation of user-friendly interfaces for testing complex agent behaviors and debugging agent-tool interactions."
+  }
+]

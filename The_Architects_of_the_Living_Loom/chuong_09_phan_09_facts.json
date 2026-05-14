@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Grounded Evaluation Flow",
+    "explanation": "A process that iterates through recommendation outputs, converts criteria scores to floats, and calculates the average score for each recommendation to provide a quantitative metric.",
+    "importance": "Enables objective measurement and comparison of AI recommendation performance based on predefined criteria."
+  },
+  {
+    "concept": "Score Aggregation",
+    "explanation": "A process that flattens a batch of processed recommendation results and accumulates numerical scores for each specific criterion across all items, then calculates the final average for each criterion.",
+    "importance": "Transforms granular item-level scores into high-level metrics for evaluating the overall quality of a prompt variant."
+  },
+  {
+    "concept": "Batch Run Visualization",
+    "explanation": "A feature within the prompt flow environment that allows developers to select multiple batch runs and compare their metrics side-by-side using visualization tools.",
+    "importance": "Provides visual evidence to determine which prompt variants or agent profiles yield superior results, facilitating iterative improvement."
+  }
+]

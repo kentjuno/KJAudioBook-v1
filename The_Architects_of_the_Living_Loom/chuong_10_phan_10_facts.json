@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Tree of Thought (ToT) Prompting",
+    "explanation": "A prompting pattern that structures planning as a chain of steps where each step involves generating multiple candidate solutions followed by an evaluation process to filter or prioritize them.",
+    "importance": "Enables more robust and deliberate planning by LLMs by allowing them to explore multiple paths and prune low-quality branches early in the execution."
+  },
+  {
+    "concept": "Breadth-First ToT Execution",
+    "explanation": "A strategy for executing a Tree of Thought where the flow processes multiple generated nodes at a single level before proceeding to the next level of the tree, often necessary due to architectural constraints (like DAG-based prompt flows) that make depth-first traversal difficult.",
+    "importance": "Aligns complex tree-based logic with the practical execution constraints of standard DAG-based prompt orchestration frameworks."
+  },
+  {
+    "concept": "Short-Circuiting Evaluation",
+    "explanation": "A mechanism in ToT where an evaluation function reviews the output of a generation step and determines whether it meets a quality threshold; if the score is insufficient, the path is halted (returning no text), preventing further computational resources from being wasted on invalid plans.",
+    "importance": "Improves efficiency and accuracy by discarding suboptimal reasoning paths before they propagate further through the chain."
+  },
+  {
+    "concept": "Semantic Function Tooling",
+    "explanation": "The practice of using dedicated code blocks (e.g., Python tools) that wrap both a generation semantic function and an evaluation semantic function to manage input/output logic and conditional execution.",
+    "importance": "Provides a modular and reusable way to integrate complex reasoning patterns like ToT directly into automated prompt pipelines."
+  }
+]

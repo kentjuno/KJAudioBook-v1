@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Batch Processing in Prompt Flow",
+    "explanation": "A method to execute a defined flow against multiple input variations simultaneously by loading a JSON Lines (JSONL) file, allowing for systematic testing of different criteria.",
+    "importance": "Enables efficient evaluation and stress-testing of AI agents across diverse scenarios without manual, iterative execution."
+  },
+  {
+    "concept": "Evaluation Flow",
+    "explanation": "A specialized flow type designed to assess the quality of outputs from a main flow, typically consisting of Python code blocks for scoring and aggregating metrics instead of LLM inference blocks.",
+    "importance": "Provides a programmatic and objective way to validate AI performance and grounding without relying on the LLM itself for the evaluation."
+  },
+  {
+    "concept": "Grounding Evaluation",
+    "explanation": "The process of verifying that an AI agent's responses are accurately supported by or adhere to specific, predefined criteria or constraints.",
+    "importance": "Ensures the reliability and safety of AI-generated content by measuring how well the agent aligns with requested parameters like genre, rating, or formatting."
+  }
+]

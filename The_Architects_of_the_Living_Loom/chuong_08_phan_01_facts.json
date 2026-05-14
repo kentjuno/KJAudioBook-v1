@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Retrieval Augmented Generation (RAG)",
+    "explanation": "A mechanism that provides external context to an LLM by querying relevant information from a storage source. It involves loading documents, transforming them into context chunks, embedding them as vectors, and performing similarity searches to populate prompts.",
+    "importance": "Enables LLMs to access long-lived, external knowledge and personalized context without retraining, making them more effective for document Q&A and stateful conversations."
+  },
+  {
+    "concept": "Vector Database",
+    "explanation": "A specialized storage system that saves vector embeddings of data (documents, conversation snippets, or facts), allowing for efficient text-similarity searches based on meaning.",
+    "importance": "Essential for powering semantic search and retrieval systems within agentic AI applications."
+  },
+  {
+    "concept": "Semantic Search",
+    "explanation": "A search technique that matches content based on both words and the underlying meaning of the query, typically implemented through vector similarity search.",
+    "importance": "Allows agents to retrieve context that is conceptually relevant to a query rather than relying strictly on keyword matching."
+  },
+  {
+    "concept": "Memory vs. Knowledge in AI",
+    "explanation": "Knowledge refers to external documents or information used to augment prompts, while memory encompasses conversation histories, tasks, and user preferences. Both rely on retrieval patterns for augmentation.",
+    "importance": "Distinguishing these enables better system design for handling both static reference data and dynamic, stateful interaction histories."
+  }
+]

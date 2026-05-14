@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Semantic Kernel Plugin Loading",
+    "explanation": "Plugins can be loaded into the Semantic Kernel using 'import_plugin_from_prompt_directory'. Once registered, these plugins can be invoked either directly or through an LLM chat conversation.",
+    "importance": "Enables modular functionality by allowing predefined prompts and logic to be integrated into the kernel's execution context."
+  },
+  {
+    "concept": "Native Functions",
+    "explanation": "Native functions are pieces of code that can perform arbitrary tasks (like file I/O), implemented as methods within a class and marked with a '@kernel_function' decorator.",
+    "importance": "They allow developers to bridge the gap between AI-driven semantic functions and imperative code logic, providing data retrieval and environmental interaction capabilities."
+  },
+  {
+    "concept": "Native Function Registration",
+    "explanation": "Native functions are registered by creating an instance of the containing class and importing it into the kernel using 'import_plugin_from_object'.",
+    "importance": "This pattern provides a structured, object-oriented way to manage and expose external logic to the kernel."
+  }
+]

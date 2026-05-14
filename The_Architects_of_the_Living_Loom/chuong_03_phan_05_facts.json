@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "FastAPI Development Workflow",
+    "explanation": "A systematic process for building APIs: defining action/endpoint, selecting HTTP methods, creating functions, using decorators for routing, and implementing Pydantic models for data validation and serialization.",
+    "importance": "Ensures API services are structured, documented, and ready for integration."
+  },
+  {
+    "concept": "Pydantic Models in FastAPI",
+    "explanation": "Using Pydantic classes to define the schema for request and response data within FastAPI applications.",
+    "importance": "Enables automatic data validation, type enforcement, and serialization/deserialization, which are critical for robust API services."
+  },
+  {
+    "concept": "Automatic OpenAPI Specification",
+    "explanation": "FastAPI automatically generates an OpenAPI specification based on route definitions, function parameters, and Pydantic models, accessible via the Swagger UI.",
+    "importance": "Facilitates seamless integration with external tools and agents by providing a machine-readable contract of the API."
+  },
+  {
+    "concept": "Local API Deployment with ngrok",
+    "explanation": "Utilizing tools like ngrok to expose local development servers to the internet.",
+    "importance": "Allows testing and integration of local services with external agents or systems that require a reachable endpoint."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Custom Actions",
+    "explanation": "Custom actions enable GPT Assistants to perform dynamic tasks by interacting with external services or APIs.",
+    "importance": "Extends the capabilities of assistants beyond text generation to real-world operations and data integration."
+  },
+  {
+    "concept": "File Uploads for Knowledge Extension",
+    "explanation": "A feature in GPT Assistants that allows users to upload static documents (up to 512MB) to serve as a knowledge base for the AI.",
+    "importance": "Provides a way to ground the AI's responses in specific, provided context rather than relying solely on training data."
+  },
+  {
+    "concept": "Retrieval Augmented Generation (RAG)",
+    "explanation": "An architectural pattern where an LLM retrieves relevant information from an external source (like uploaded documents) before generating a response.",
+    "importance": "Enables accurate, context-aware answers by combining the LLM's reasoning with external, domain-specific information."
+  },
+  {
+    "concept": "Assistant Instruction Engineering",
+    "explanation": "The practice of configuring an assistant with a combination of high-level descriptions (preambles), specific personality personas, and defined operational rules.",
+    "importance": "Crucial for guiding the model's behavior, teaching style, and specific output format to meet user needs effectively."
+  }
+]

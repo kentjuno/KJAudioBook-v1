@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "LLM Function Calling (Tool Use)",
+    "explanation": "A mechanism where an LLM is provided with a list of available function definitions. If the user's prompt requires external data or actions, the model generates a structured output indicating which function(s) to call and with what arguments.",
+    "importance": "Enables LLMs to interact with external APIs, databases, and code execution environments, extending their utility beyond text generation."
+  },
+  {
+    "concept": "Parallel Function Invocation",
+    "explanation": "The process of extracting multiple tool calls from a single LLM response and executing them iteratively to fulfill complex user requests that involve several distinct tasks.",
+    "importance": "Increases efficiency by allowing a model to address multifaceted queries in fewer round-trips to the API."
+  },
+  {
+    "concept": "Tool Choice Automation",
+    "explanation": "Setting 'tool_choice' to 'auto' allows the model to decide whether to call a tool or respond directly to the user based on the context.",
+    "importance": "Provides a flexible interface where the model intelligently manages the delegation process based on the user's input."
+  },
+  {
+    "concept": "Model Selection for Function Delegation",
+    "explanation": "Less sophisticated and cheaper language models (e.g., 'gpt-3.5-turbo') are often sufficient for identifying function call requirements because the task is structured and deterministic compared to complex creative writing.",
+    "importance": "Optimizes cost and performance by matching model complexity to the specific requirements of the task."
+  }
+]

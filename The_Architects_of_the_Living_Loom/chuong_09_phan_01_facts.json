@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Systematic Prompt Engineering",
+    "explanation": "A structured, iterative lifecycle for developing prompts that involves continuous testing, evaluation, and refinement rather than simple ad-hoc changes.",
+    "importance": "Ensures predictability, quality, and effectiveness in LLM outputs, which is critical for building robust agents."
+  },
+  {
+    "concept": "Prompt Flow",
+    "explanation": "A development tool designed by Microsoft to facilitate the systematic testing, iteration, and evaluation of prompt engineering strategies.",
+    "importance": "Automates and scales the previously manual process of iterating on prompts and measuring their effectiveness."
+  },
+  {
+    "concept": "Agent Profile",
+    "explanation": "An encapsulation of various prompt components—such as personas, special instructions, and interaction strategies—that collectively define an agent's identity and operational capabilities.",
+    "importance": "Provides a modular and manageable way to define complex agent behaviors by composing multiple prompt engineering strategies."
+  },
+  {
+    "concept": "System Prompt/Message",
+    "explanation": "A high-level instruction given to an LLM to set its 'role' or behavioral constraints, which persists throughout the conversation.",
+    "importance": "Crucial for establishing the context and persona within which the model operates, allowing for more specific and controlled interactions."
+  }
+]

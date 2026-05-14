@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Manager Assistant",
+    "explanation": "An administrative AI entity designed to manage the lifecycle of other assistants, including their installation, listing, and configuration exporting to JSON formats.",
+    "importance": "Provides a centralized control mechanism for maintaining a modular ecosystem of specialized agents."
+  },
+  {
+    "concept": "Principle of Least Privilege for Agents",
+    "explanation": "The practice of keeping assistants goal-specific and limiting their available actions to the bare minimum required for their task.",
+    "importance": "Reduces the complexity of decision-making for the AI, minimizes hallucinations, and prevents accidental operations."
+  },
+  {
+    "concept": "Coding Challenge ABT (Agent-Based Testing)",
+    "explanation": "A benchmarking methodology using programming exercises to evaluate the capability and reliability of agentic systems.",
+    "importance": "Allows for quantifiable evaluation of AI performance using objective pass/fail assertions."
+  },
+  {
+    "concept": "Benchmarking Best Practices",
+    "explanation": "Recommendations for designing AI tests: focus on testable assertions, avoid graphical interface dependencies, and ensure tasks are short-lived/concise.",
+    "importance": "Ensures consistent, reproducible, and efficient evaluation of agentic reasoning and coding skills."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Agentic Behavior Tree (ABT)",
+    "explanation": "A structural approach to orchestrating multiple AI agents using behavior tree patterns. Nodes represent specific actions or conditions, executed in a defined sequence to reach a terminal goal.",
+    "importance": "Provides a predictable, manageable, and modular way to coordinate autonomous agents, ensuring they complete tasks in a logical order."
+  },
+  {
+    "concept": "Back Chaining",
+    "explanation": "A design methodology for behavior trees that starts with the desired goal and works backward to identify the necessary actions and conditions required to achieve it.",
+    "importance": "Helps developers systematically decompose complex goals into smaller, executable steps, ensuring every requirement is linked back to a known state."
+  },
+  {
+    "concept": "Blackboard (in AI Systems)",
+    "explanation": "A central repository (often a key/value store) within a behavior tree framework that enables different nodes to share data and state information.",
+    "importance": "Essential for maintaining context and synchronization across independent agentic nodes."
+  },
+  {
+    "concept": "Thread-based Communication",
+    "explanation": "A pattern where multiple AI assistants operate and exchange information over a single persistent message thread.",
+    "importance": "Allows agents to maintain a shared context, enabling more sophisticated and continuous collaboration compared to siloed interactions."
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Tree of Thought (ToT) Prompting",
+    "explanation": "A systematic problem-solving approach that combines self-evaluation and prompt chaining to explore multiple potential solution paths simultaneously.",
+    "importance": "Enables LLMs to tackle complex problems by evaluating multiple branches, though it is computationally expensive due to the high number of LLM calls required."
+  },
+  {
+    "concept": "Node Validation in ToT",
+    "explanation": "A process where specific nodes in the tree are evaluated for validity. If a node or its parent is invalid, or if all sibling nodes return empty results, the parent node fails to evaluate.",
+    "importance": "Ensures the reliability of the overall solution path by pruning invalid branches and preventing flawed reasoning from propagating."
+  },
+  {
+    "concept": "Prompt Engineering Techniques (Foundational)",
+    "explanation": "Includes Direct Prompting (clear Q&A), Few-Shot (providing examples), Zero-Shot (generalization without examples), Chain of Thought (step-by-step reasoning), Prompt Chaining (sequential modular tasks), and Self-Consistency (generating multiple solutions to select the most consistent one).",
+    "importance": "These methods provide a toolkit for controlling LLM behavior, improving accuracy, and adapting models to specific tasks or unfamiliar patterns."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Behavior Tree (BT) Components",
+    "explanation": "Structural nodes that define execution flow: Selectors (or-logic), Sequences (ordered execution), Conditions (state testing), Actions (task execution), Decorators (wrappers), and Parallel nodes (concurrent execution).",
+    "importance": "Provides a robust, modular framework for designing clear, scalable, and debuggable decision-making paths in AI systems."
+  },
+  {
+    "concept": "ABTs (Agentic Behavior Trees)",
+    "explanation": "An extension of behavior trees that integrate Large Language Models (LLMs) by using prompts to direct assistant actions and conditions dynamically.",
+    "importance": "Enables the creation of complex, autonomous agentic systems that combine structured logic with LLM-driven flexibility."
+  },
+  {
+    "concept": "Back-chaining",
+    "explanation": "A design methodology for behavior trees that starts from the desired goal and works backward to identify the necessary actions, conditions, and communication patterns required to achieve it.",
+    "importance": "Facilitates a systematic approach to constructing complex behavior trees by ensuring every node is mapped to a specific requirement."
+  },
+  {
+    "concept": "Agent Communication Patterns",
+    "explanation": "The use of 'siloed' (isolated/structured) and 'conversational' (open/interactive) patterns for interactions between different agents or assistants within a system.",
+    "importance": "Allows developers to balance structured, deterministic processes with emergent, flexible behaviors in multi-agent systems."
+  }
+]

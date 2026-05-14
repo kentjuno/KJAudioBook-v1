@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Evaluation Prompting",
+    "explanation": "A method to programmatically assess LLM performance by using a secondary prompt (e.g., in JinJa2) that compares a model's 'predicted' output against an 'expected' ground truth, typically returning a normalized score (0 to 1).",
+    "importance": "Enables automated quality assurance for LLM reasoning pipelines by generalizing scoring criteria without manual intervention."
+  },
+  {
+    "concept": "Zero-shot Chain-of-Thought (CoT) Prompting",
+    "explanation": "A technique to elicit multi-step reasoning from an LLM without providing specific examples, triggered by adding simple directives such as 'Let's think step by step' to the prompt.",
+    "importance": "Reduces the token cost and complexity of building prompts while still compelling the LLM to generate internal logical steps before arriving at a final answer."
+  },
+  {
+    "concept": "Prompt Flow",
+    "explanation": "A structured development approach, often managed via YAML-based configuration, that chains together multiple LLM interactions (e.g., a reasoning step followed by an evaluation step) to create a reproducible data processing pipeline.",
+    "importance": "Allows for the systematic testing, visualization, and refinement of complex reasoning workflows in LLM applications."
+  }
+]

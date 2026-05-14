@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "LLM Connection Parameters",
+    "explanation": "Essential settings for integrating LLMs in Prompt Flow include: Connection (service name), API (chat or completion), Model (deployment or model name), Temperature (randomness/stochasticity), Stop (token generation limiters), and Max tokens (load/scaling management).",
+    "importance": "Correct configuration of these parameters is critical for predictable behavior, performance scaling, and cost management in production AI systems."
+  },
+  {
+    "concept": "Jinja2 Templating for Agent Profiles",
+    "explanation": "Jinja2 is a templating engine used within Prompt Flow to create modular, dynamic agent profiles or prompts. It allows for text structure definition and the inclusion of logic within the template.",
+    "importance": "Using templating engines provides a standardized, reproducible way to manage complex agent prompts and system instructions, facilitating better maintenance than static prompt strings."
+  },
+  {
+    "concept": "Flow Deployment",
+    "explanation": "Prompt Flow supports rapid deployment of developed flows as services, either as local web applications running from the terminal or as Docker containers.",
+    "importance": "This modularity allows for transitioning from development/research environments to production-ready API services."
+  }
+]

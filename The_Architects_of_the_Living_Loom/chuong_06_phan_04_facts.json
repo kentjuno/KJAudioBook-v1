@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Behavior Tree Ticking",
+    "explanation": "A 'tick' is an execution step where a behavior tree traverses its nodes, updating their status and executing associated logic. The root node triggers the tick, which propagates down to leaf nodes like actions and conditions.",
+    "importance": "Crucial for controlling agent behavior in real-time by repeatedly evaluating state and executing tasks."
+  },
+  {
+    "concept": "OpenAI Assistant vs. GPT",
+    "explanation": "A 'GPT' refers to an assistant running within the ChatGPT web interface, while an 'Assistant' is a programmatic construct consumed via the OpenAI API that requires custom code.",
+    "importance": "Essential for understanding cost structures and deployment strategies, as Assistants involve model token usage and tool costs through API integration."
+  },
+  {
+    "concept": "Custom Actions in Assistants",
+    "explanation": "Custom actions enable developers to extend an assistant's capabilities beyond base model functionality by connecting them to external logic or tools.",
+    "importance": "Enables the development of complex agentic systems that can perform specific, user-defined tasks beyond standard model responses."
+  }
+]

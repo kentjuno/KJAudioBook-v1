@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Document Embedding",
+    "explanation": "A technique that maps words, sentences, or documents into high-dimensional vectors using neural networks trained on large datasets to capture syntactic and semantic relationships based on context.",
+    "importance": "Provides a more robust way to capture the semantic meaning of text compared to frequency-based methods like TF-IDF."
+  },
+  {
+    "concept": "Dimensionality Reduction (PCA)",
+    "explanation": "Principal Component Analysis (PCA) is a mathematical technique used to reduce the number of dimensions in high-dimensional vector data (e.g., from 1536 to 3 dimensions) while preserving as much variance as possible.",
+    "importance": "Enables the visualization of high-dimensional semantic data in lower-dimensional space to identify clusters of similar documents."
+  },
+  {
+    "concept": "Vector Database (Chroma DB)",
+    "explanation": "A specialized database system designed to store, manage, and query high-dimensional vector embeddings, allowing for efficient similarity searches.",
+    "importance": "Acts as the storage layer for embedded documents, facilitating retrieval-based applications and semantic search."
+  },
+  {
+    "concept": "Cosine Distance",
+    "explanation": "A metric defined as 1 - Cosine Similarity, used to measure how semantically different two vectors are. Values range from 0 (most similar) to 2 (semantically opposite).",
+    "importance": "Serves as the primary mechanism for scoring and ranking search results in vector databases based on semantic proximity."
+  }
+]

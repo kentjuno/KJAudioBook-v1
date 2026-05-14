@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Self-Consistency Prompting",
+    "explanation": "A technique that involves generating multiple reasoning paths or answers for the same prompt and identifying the most consistent result, often by using similarity metrics on embeddings.",
+    "importance": "Helps improve reliability by selecting the 'most likely' output among several attempts, though it may struggle with complex reasoning tasks."
+  },
+  {
+    "concept": "Batch Evaluation in Prompt Flow",
+    "explanation": "The process of executing a flow across multiple input data entries simultaneously and using an evaluation flow to aggregate and analyze the results.",
+    "importance": "Enables large-scale testing and systematic comparison of model outputs to verify performance and consistency."
+  },
+  {
+    "concept": "Cosine Similarity for Response Validation",
+    "explanation": "A method used to compare text outputs by calculating the cosine similarity between their vector embeddings. The system identifies the response most similar to the mean embedding of all generated responses.",
+    "importance": "Provides a quantitative basis for determining the most 'consistent' answer from a set of model-generated outputs."
+  }
+]

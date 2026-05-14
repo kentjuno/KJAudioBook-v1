@@ -1,0 +1,70 @@
+{
+    "consciousness_core": {
+        "type": "location",
+        "name": "Consciousness Core",
+        "description": "Trái tim cơ khí của con tàu cổ đại, một không gian mênh mông với các bảng điều khiển holographic và hàng triệu luồng dữ liệu ánh sáng xanh mờ nhạt.",
+        "image_prompt": "Internal view of the Consciousness Core, the mechanical heart of a colossal ancient spaceship. Massive interlocking gears, glowing conduits, and floating holographic panels emitting a soft blue light. Dimly lit, cinematic atmosphere, volumetric fog, dark metallic textures, intricate futuristic machinery, hyper-detailed, 8k, Unreal Engine 5 render.",
+        "local_image_path": "images\\consciousness_core.jpg",
+        "media_id": "9ecffda7-a8d3-4bc1-867b-f80b9f7c50b6",
+        "last_uploaded_at": 1778648546.024788,
+        "media_project_id": "a59651a1-70ff-44b6-ac42-c26d90ad28ef"
+    },
+    "sector_7g": {
+        "type": "location",
+        "name": "Sector 7-G",
+        "description": "Phân khu bị cô lập và lỗi dữ liệu, nơi các luồng thông tin bị vặn xoắn, ánh sáng chập chờn và các bóng ma logic lặp lại hành vi sai lệch.",
+        "image_prompt": "Interior of Sector 7-G, a desolate and corrupted sector within an ancient starship. Flickering neon blue and orange lights, digital glitch artifacts, shattered metallic walkways, and distorted data streams. Dark, claustrophobic atmosphere, high contrast shadows, gritty sci-fi aesthetic, photorealistic, 8k resolution.",
+        "local_image_path": "images\\sector_7g.jpg",
+        "media_id": "bfe75a3f-d59e-4395-a712-883ca3407645",
+        "last_uploaded_at": 1778645775.740456,
+        "media_project_id": "a59651a1-70ff-44b6-ac42-c26d90ad28ef"
+    },
+    "kael": {
+        "type": "character",
+        "name": "Kael",
+        "description": "Chàng trai trẻ 20 tuổi, tóc đen ngắn hơi rối, mặc đồ phi hành gia rách rưới, ánh mắt kiên định phản chiếu ánh sáng xanh từ dữ liệu.",
+        "image_prompt": "Cinematic close-up portrait of Kael, a 20-year-old man with an intense expression of fury and unwavering determination. He has slightly messy, short jet-black hair with individual strands catching the light. He is dressed in a heavily weathered and ragged futuristic spacesuit, featuring scuffed metallic plates, exposed internal wiring, and torn thermal fabric. His piercing eyes reflect vibrant blue holographic data streams with crystalline clarity. The lighting is dramatic chiaroscuro, utilizing a cold blue rim light against a dark, gritty spaceship interior. Hyper-realistic skin textures, subsurface scattering, volumetric atmosphere, 8k resolution, Unreal Engine 5 render, photorealistic, sharp focus, ray-traced reflections, cinematic masterpiece.",
+        "local_image_path": "images\\kael_1778712857.jpg",
+        "media_id": "20b91634-a0ad-4a10-97ee-aa299926a541",
+        "last_uploaded_at": 1778645763.2630618,
+        "media_project_id": "a59651a1-70ff-44b6-ac42-c26d90ad28ef",
+        "variations": [
+            {
+                "id": "1778712857",
+                "local_image_path": "images\\kael_1778712857.jpg",
+                "media_id": null,
+                "prompt": null,
+                "created_at": 1778712857
+            },
+            {
+                "id": "1778715328",
+                "local_image_path": "images\\kael_1778715328.jpg",
+                "media_id": "7b5900e5-45b5-4ddb-b1b8-7d61ea9257f4",
+                "prompt": "Cinematic close-up portrait of Kael, a 20-year-old man with an intense expression of fury and unwavering determination. He has slightly messy, short jet-black hair with individual strands catching the light. He is dressed in a heavily weathered and ragged futuristic spacesuit, featuring scuffed metallic plates, exposed internal wiring, and torn thermal fabric. His piercing eyes reflect vibrant blue holographic data streams with crystalline clarity. The lighting is dramatic chiaroscuro, utilizing a cold blue rim light against a dark, gritty spaceship interior. Hyper-realistic skin textures, subsurface scattering, volumetric atmosphere, 8k resolution, Unreal Engine 5 render, photorealistic, sharp focus, ray-traced reflections, cinematic masterpiece., Cinematic, highly detailed, Unreal Engine 5",
+                "name": "Kael đang tức giận ",
+                "created_at": 1778715328
+            }
+        ],
+        "references": [
+            {
+                "media_id": "20b91634-a0ad-4a10-97ee-aa299926a541",
+                "local_image_path": "images\\kael_1778712857.jpg"
+            },
+            {
+                "media_id": "7b5900e5-45b5-4ddb-b1b8-7d61ea9257f4",
+                "local_image_path": "images\\kael_1778715328.jpg"
+            }
+        ],
+        "variation_context": "Kael đang tức giận "
+    },
+    "validator_agent": {
+        "type": "character",
+        "name": "Validator Agent",
+        "description": "Một tác nhân giám định dữ liệu chuyên nghiệp, hiện thân của sự tĩnh lặng và kiên nhẫn, có khả năng tự kiểm soát và suy luận logic cao.",
+        "image_prompt": "Character design of a Validator Agent, a sleek and translucent digital entity with a calm, non-aggressive presence. Ethereal glowing internal circuitry, smooth futuristic white and silver surface. Surrounding floating data fragments and vector embeddings. Precise posture, cinematic lighting, sci-fi concept art, hyper-detailed, 8k resolution.",
+        "local_image_path": "F:\\AntiGravity\\AudioBook-KJ\\audiobook_builder\\images\\validator_agent.jpeg",
+        "media_id": "fb183e38-915a-4863-a68a-3ffa501d7c09",
+        "last_uploaded_at": 1778648744.421254,
+        "media_project_id": "a59651a1-70ff-44b6-ac42-c26d90ad28ef"
+    }
+}

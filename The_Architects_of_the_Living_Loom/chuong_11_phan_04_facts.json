@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "Prompt Template Management for Planning",
+    "explanation": "A process where available agent actions and the specific user goal are injected into a structured template (similar to Jinja2 or Mustache) to create a comprehensive prompt for the LLM to generate a plan.",
+    "importance": "Ensures the LLM has all necessary environmental context and tool definitions before attempting to sequence tasks."
+  },
+  {
+    "concept": "Programmatic Plan Execution",
+    "explanation": "The actual execution of the generated plan is handled by a local engine rather than the LLM. This engine iterates through subtasks, calls the necessary functions, and manages the results.",
+    "importance": "Reduces token consumption, bypasses the need for constant LLM tool-use calls, and allows models without native tool-use support to act as complex agents."
+  },
+  {
+    "concept": "Shared Execution Context",
+    "explanation": "A central data structure (context) that stores the outputs of each executed task. These results are indexed and passed as inputs to subsequent subtasks in the plan.",
+    "importance": "Enables data flow and dependency management between multiple steps in a complex, multi-stage agent goal."
+  },
+  {
+    "concept": "Structured Control Flow (for-each)",
+    "explanation": "The execution engine includes logic to handle iterative tasks where a function is applied to every item in a list, with the results being collected back into the shared context.",
+    "importance": "Allows the agent to perform batch processing and handle repetitive tasks without requiring the LLM to manually output every single iteration in the initial plan."
+  },
+  {
+    "concept": "LLM Post-Processing (Summarization)",
+    "explanation": "After the local execution engine completes the plan, the final context (all results) is sent back to the LLM for a final summary or response to the user.",
+    "importance": "Converts raw execution data into a human-readable format and provides a final layer of error checking or next-step recommendations."
+  }
+]

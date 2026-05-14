@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Semantic Service Layer",
+    "explanation": "An abstraction layer that wraps standard API endpoints with semantic metadata, enabling them to be discovered and executed by LLMs, agents, or chat interfaces.",
+    "importance": "It bridges the gap between conventional deterministic APIs and non-deterministic AI agents, allowing models to perform actions by calling functions."
+  },
+  {
+    "concept": "Native Plugin / Skill",
+    "explanation": "A collection of functions (typically defined within a Python class) that are registered with the Semantic Kernel to be used as tools or skills by an AI agent.",
+    "importance": "It is the primary mechanism in Semantic Kernel for extending agent capabilities with custom logic or external service interactions."
+  },
+  {
+    "concept": "Kernel Function Decorator",
+    "explanation": "A metadata-rich decorator (@kernel_function) applied to class methods that defines the function's name, purpose, and input parameters.",
+    "importance": "This metadata is critical for the Semantic Kernel to effectively surface these functions to an LLM, ensuring the model understands when and how to invoke the tool."
+  }
+]

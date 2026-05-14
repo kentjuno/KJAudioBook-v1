@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+.env
+__pycache__/
+*.pyc
+venv/
+.venv/
+env/
+.DS_Store
+.vscode/
+audiobook_builder/output/
+audiobook_builder/temp/

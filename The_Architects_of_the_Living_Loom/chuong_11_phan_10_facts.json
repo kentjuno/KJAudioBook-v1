@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "Agentic Feedback Mechanisms",
+    "explanation": "A process where feedback is used alongside evaluation to improve an agent's actions. It can be single-use within an interaction or persisted as part of the agent's memory to influence future sessions.",
+    "importance": "Enables continuous monitoring, provides confidence for system improvements, and allows agents to learn from past actions."
+  },
+  {
+    "concept": "Feedback Looping Problem",
+    "explanation": "A phenomenon where multiple agents providing evaluation and feedback to one another can result in poor performance or infinite cycles. This is often mitigated by isolating feedback and evaluation at the end of a process.",
+    "importance": "Helps in designing stable multi-agent systems by identifying when to use offline versus real-time feedback."
+  },
+  {
+    "concept": "Integrated Reasoning and Planning",
+    "explanation": "The evolution of LLMs where capabilities previously considered external components (like reasoning and planning) are being built directly into the model's architecture (e.g., OpenAI's 'Strawberry').",
+    "importance": "Simplifies agent architecture and moves toward self-evaluating models capable of long-term improvement without external loops."
+  },
+  {
+    "concept": "Sequential vs. Parallel Planning",
+    "explanation": "Sequential planning involves breaking a goal into steps where each action depends on the previous result. Parallel planning allows multiple independent tasks to be executed simultaneously.",
+    "importance": "Critical for optimizing agent performance and ensuring logical correctness in multi-step goal execution."
+  },
+  {
+    "concept": "Agentic Memory Persistence",
+    "explanation": "The method by which information, such as user feedback or self-evaluation, is stored across different sessions or interactions.",
+    "importance": "Essential for creating adaptive agents that improve over time and provide a consistent user experience."
+  }
+]

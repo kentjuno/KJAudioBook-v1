@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #111827; /* Tailwind Gray-900 for Studio look */
+  color: #f3f4f6; /* Gray-100 */
+}
+
+/* Custom Scrollbar for Studio Theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a; /* tailwind slate-950 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155; /* tailwind slate-700 */
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569; /* tailwind slate-600 */
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

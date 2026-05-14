@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Output Length Specification",
+    "explanation": "A prompt engineering tactic that restricts the length or format (e.g., word count or bullet points) of an LLM's response to ensure conciseness, reduce filler, and maintain focus.",
+    "importance": "Crucial for multi-agent systems where concise, predictable communication reduces noise and improves agent-to-agent interactions."
+  },
+  {
+    "concept": "Few-Shot Style Enforcement",
+    "explanation": "Using examples within the prompt to define the desired structure, tone, and length for future assistant responses.",
+    "importance": "Ensures uniformity and adherence to specific output requirements across a sequence of interactions."
+  },
+  {
+    "concept": "LLM Selection Criteria",
+    "explanation": "Evaluating models based on specific needs such as task-specific performance (e.g., coding), parameter size, and hardware requirements (GPU/compute).",
+    "importance": "Allows developers to choose the optimal model architecture to balance capability with operational constraints, especially when self-hosting models."
+  }
+]

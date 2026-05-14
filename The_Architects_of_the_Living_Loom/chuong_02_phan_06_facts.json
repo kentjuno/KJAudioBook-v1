@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "GPT Rubber Ducking",
+    "explanation": "Applying the traditional debugging technique of explaining a problem aloud to an LLM instead of an inanimate object. This can be further improved by assigning the LLM a specific persona tailored to the problem domain.",
+    "importance": "Helps clarify complex problems and prompts the model to provide more focused or domain-appropriate solutions."
+  },
+  {
+    "concept": "Delimiters",
+    "explanation": "Using specific structural markers (e.g., XML tags, triple quotes, markdown symbols) to isolate segments of text or define relationships within an input prompt.",
+    "importance": "Reduces ambiguity and directs the LLM to focus on specific portions of the provided text, which is particularly useful for hierarchical or structured data."
+  },
+  {
+    "concept": "Specifying Steps",
+    "explanation": "Decomposing a complex task into a clear, numbered sequence of instructions that the LLM must execute sequentially.",
+    "importance": "Enables the model to handle multi-step workflows, maintain consistency across long conversations, and perform distinct operations in a logical order."
+  },
+  {
+    "concept": "Providing Examples (Few-Shot Prompting)",
+    "explanation": "Including representative input-output pairs or style guidelines within the prompt to define the expected output format, tone, and length.",
+    "importance": "Provides concrete context that guides the LLM to produce outputs that strictly adhere to desired stylistic and structural constraints."
+  }
+]

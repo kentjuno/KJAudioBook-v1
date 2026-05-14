@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Nested vs. Group Chat",
+    "explanation": "Nested chats involve sequential delegation that can suffer from information loss over iterations. Group chats provide a shared, transparent environment where all agents can view past messages.",
+    "importance": "Crucial for maintaining coherence and information fidelity in complex, long-running agent tasks."
+  },
+  {
+    "concept": "AutoGen GroupChat and GroupChatManager",
+    "explanation": "GroupChat acts as a repository for agents and messages (akin to a chat channel), while GroupChatManager moderates the interaction and coordinates responses among the agents.",
+    "importance": "Enables multi-agent collaboration and feedback loops, such as an engineer agent responding to a critic agent within a single context."
+  },
+  {
+    "concept": "CrewAI Architecture",
+    "explanation": "An enterprise-oriented multi-agent framework that organizes agents into 'crews'. Unlike AutoGen, it does not mandate a user proxy agent and instead focuses on agents working collaboratively on specific, assigned tasks.",
+    "importance": "Provides a robust, task-oriented structure for building production-grade multi-agent systems."
+  }
+]

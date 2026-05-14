@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Data Analysis Lifecycle (Automated)",
+    "explanation": "A structured workflow for AI assistants involving data acquisition, cleaning, exploratory analysis, hypothesis testing, predictive modeling, and insight reporting.",
+    "importance": "Provides a reproducible, standardized approach to data science tasks for AI agents."
+  },
+  {
+    "concept": "Exploratory Data Analysis (EDA) Workflow",
+    "explanation": "The process of preparing data (handling nulls, typing) and extracting initial insights through statistical summaries (mean, median) and visual representations (histograms, box plots).",
+    "importance": "Essential for understanding data quality, distribution, and identifying patterns before complex modeling."
+  },
+  {
+    "concept": "Predictive Modeling Pipeline",
+    "explanation": "A machine learning sequence involving feature engineering, model selection (e.g., RandomForest, LinearRegression), data splitting, training, and performance evaluation using metrics like MSE or accuracy.",
+    "importance": "Enables the transformation of raw historical data into actionable predictive insights."
+  },
+  {
+    "concept": "Assistant Configuration for Data Analysis",
+    "explanation": "The practice of equipping AI agents with specific instructions (personas, tasks) and capabilities (Code Interpreter) to handle technical file analysis.",
+    "importance": "Allows users to offload complex data processing and visualization tasks to specialized autonomous tools."
+  }
+]

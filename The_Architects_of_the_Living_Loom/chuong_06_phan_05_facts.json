@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Custom Actions",
+    "explanation": "Functionality added to AI assistants by defining Python functions, decorating them with @agent_action, and placing them in a designated folder. The system automatically registers these actions based on function names and docstrings.",
+    "importance": "Enables modular extensibility, allowing assistants to perform specialized tasks beyond their base capabilities."
+  },
+  {
+    "concept": "Local Code Runner",
+    "explanation": "A feature within the Playground that executes Python code locally in an isolated, out-of-process environment, offering an alternative to cloud-based interpreters.",
+    "importance": "Provides a faster, more interactive, and cost-effective alternative to proprietary cloud code interpreters, while allowing the use of custom modules."
+  },
+  {
+    "concept": "Assistant Transparency and Logging",
+    "explanation": "A monitoring mechanism that captures logs and visualizes the internal and external tools/actions utilized by an assistant during task execution.",
+    "importance": "Essential for debugging, auditing, and understanding the reasoning or 'behind-the-scenes' workflow of AI agents."
+  },
+  {
+    "concept": "Manager Assistant Pattern",
+    "explanation": "A specialized architectural pattern where a 'Manager' assistant acts as a controller, capable of creating and managing other assistants, including installing them from a database.",
+    "importance": "Facilitates hierarchical organization of agents and dynamic scaling of assistant capabilities."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "GPU Inference Acceleration",
+    "explanation": "LM Studio allows for the detection and utilization of local GPU hardware to accelerate the inference speed of loaded Large Language Models.",
+    "importance": "Utilizing GPU hardware is critical for reducing response latency and improving performance when running LLMs locally."
+  },
+  {
+    "concept": "Local LLM Serving",
+    "explanation": "LM Studio can host a loaded LLM as a local server, exposing an API endpoint that can be accessed by standard clients like the OpenAI Python package.",
+    "importance": "This enables local models to be seamlessly integrated into existing applications as drop-in replacements for cloud-based LLM APIs."
+  },
+  {
+    "concept": "Prompt Engineering",
+    "explanation": "An emerging field focused on defining structured methodologies and strategies for constructing more effective prompts to achieve desired model outputs.",
+    "importance": "Since prompt building is not yet a precise science, these engineering strategies provide a framework for consistently improving LLM performance and output quality."
+  },
+  {
+    "concept": "Write Clear Instructions Strategy",
+    "explanation": "A fundamental prompt engineering strategy that emphasizes providing specific details and relevant context within the request, mirroring how one would delegate tasks to a human.",
+    "importance": "High-quality, context-aware prompts significantly improve the relevance and accuracy of the model's response."
+  }
+]

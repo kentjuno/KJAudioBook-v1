@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Semantic Kernel (SK) Service Configuration",
+    "explanation": "SK requires configuring specific AI services (e.g., OpenAIChatCompletion or AzureChatCompletion) and adding them to the kernel instance to handle LLM requests.",
+    "importance": "Essential for establishing the connection between the application and the underlying LLM provider."
+  },
+  {
+    "concept": "Semantic Function",
+    "explanation": "A self-contained functional abstraction of a prompt template that can be executed by the kernel. It can exist independently or be registered within a plugin.",
+    "importance": "Allows developers to treat prompt templates as executable code units, enabling modular and reusable prompt engineering."
+  },
+  {
+    "concept": "Prompt Template Context Variables",
+    "explanation": "Placeholders (e.g., {{ $variable }}) within a prompt template that are populated at runtime using kernel arguments, allowing for dynamic prompt generation.",
+    "importance": "Enables context-aware interactions where prompt behavior can be tailored based on external input parameters."
+  },
+  {
+    "concept": "KernelArguments",
+    "explanation": "The mechanism in Semantic Kernel to pass dynamic values corresponding to defined input variables when invoking a semantic function.",
+    "importance": "Provides a structured, type-safe way to manage and inject dynamic context into LLM prompts."
+  }
+]

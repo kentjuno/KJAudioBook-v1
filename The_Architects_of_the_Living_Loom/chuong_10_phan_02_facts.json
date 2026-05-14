@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Question-and-Answer Prompting",
+    "explanation": "A prompting technique where a system message defines rules and provides context, followed by a user-supplied question. It often leverages Jinja2 templating to dynamically inject context for RAG-based applications.",
+    "importance": "Enables LLMs to ground responses in specific, provided information, increasing accuracy and reducing hallucinations."
+  },
+  {
+    "concept": "Zero-shot, One-shot, and Few-shot Learning",
+    "explanation": "Refers to the number of training examples provided to a model to perform a task. Zero-shot involves no examples, one-shot uses a single example, and few-shot provides several examples to guide the model's output pattern.",
+    "importance": "Allows LLMs to adapt to new tasks, domains, or vocabulary without extensive fine-tuning or massive training datasets."
+  },
+  {
+    "concept": "Similarity Matching Score",
+    "explanation": "An evaluation metric where LLM-generated output (predicted) and a reference output (expected) are converted into vector embeddings, and their mathematical similarity is measured.",
+    "importance": "Provides a quantifiable, automated way to evaluate the quality and accuracy of LLM responses against expected outcomes."
+  }
+]

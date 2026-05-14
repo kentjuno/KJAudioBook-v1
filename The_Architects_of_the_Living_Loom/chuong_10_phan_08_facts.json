@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Self-Consistency Prompting",
+    "explanation": "A technique where an LLM generates multiple candidate plans or solutions for a single problem. These candidates are then evaluated against each other, and the most frequent or consistent result is selected as the optimal answer.",
+    "importance": "It enhances the reliability of LLM outputs by reducing the impact of non-deterministic errors and ensuring that the final solution has been validated through comparison with alternative reasoning paths."
+  },
+  {
+    "concept": "DAG (Directed Acyclic Graph) Prompt Flow",
+    "explanation": "A workflow structure that executes logic in a non-repeating sequence. Because DAGs cannot natively execute loops, they rely on external mechanisms like batch processing to generate multiple variations of an output for evaluation.",
+    "importance": "It provides a structured, reproducible environment for designing complex reasoning chains, allowing developers to modularize prompt generation and evaluation steps separately."
+  },
+  {
+    "concept": "Batch Processing for Simulation",
+    "explanation": "In environments constrained by acyclic execution (where loops are not possible), batch processing is used to trigger the same prompt multiple times in parallel or sequence, effectively simulating the iteration needed for self-consistency.",
+    "importance": "It enables complex multi-step reasoning evaluation within systems that do not support native iterative loop logic."
+  }
+]

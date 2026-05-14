@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "LLM Planning",
+    "explanation": "The capability of an LLM or agent to coordinate numerous complex tasks and execute tools or actions in a serial or parallel manner to achieve a specific goal.",
+    "importance": "Planning is essential for autonomous agents and collaborative workflows that require multi-step task execution, extensive tool use, and long-term goal resolution."
+  },
+  {
+    "concept": "LLM Reasoning",
+    "explanation": "An internal thinking cycle often integrated within the LLM itself (or as part of a prompt) that enables the model to break down work into manageable steps and solve complex problems.",
+    "importance": "Reasoning enables an agent to understand and tackle complex workflows, though it can introduce latency; thus, it may be tuned down in applications requiring real-time responsiveness."
+  },
+  {
+    "concept": "Domain-Specific Capability Tuning",
+    "explanation": "The necessity for planning and reasoning is highly dependent on the application context. Controlled environments (like customer service bots) require very little reasoning or complex tool planning, whereas open-ended domains (like research or autonomous agents) heavily rely on these components.",
+    "importance": "Understanding the context allows developers to balance the agent's complexity with performance, improving user experience by disabling unnecessary reasoning cycles when real-time interaction is prioritized."
+  }
+]

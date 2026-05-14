@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "Generative Pretrained Transformers (GPTs)",
+    "explanation": "A specific architectural framework used for Large Language Models that focuses on generative capabilities rather than simple classification.",
+    "importance": "Understanding the architecture is fundamental for distinguishing how these models represent and generate complex data compared to traditional predictive models."
+  },
+  {
+    "concept": "Fine-tuning",
+    "explanation": "The process of further training a pre-existing LLM on specific datasets and configurations to optimize it for particular use cases.",
+    "importance": "Fine-tuning enables models to move from general capabilities to specialized utility for industry-specific tasks."
+  },
+  {
+    "concept": "Open Source vs. Commercial LLM Hosting",
+    "explanation": "The comparison of deploying LLMs locally (e.g., via LM Studio) versus utilizing cloud-based commercial APIs.",
+    "importance": "Choosing a hosting strategy involves critical trade-offs in cost, performance, infrastructure requirements (like GPU management), and ease of implementation."
+  },
+  {
+    "concept": "Prompt Engineering",
+    "explanation": "A set of methodologies and techniques designed to craft more effective input prompts to elicit higher-quality, more accurate responses from LLMs.",
+    "importance": "Prompt engineering is essential for optimizing model output quality without requiring structural changes to the model itself."
+  },
+  {
+    "concept": "Agent-based Systems",
+    "explanation": "The application of LLMs to power autonomous entities ranging from simple chatbots to complex autonomous workers.",
+    "importance": "This represents the evolution of LLMs from passive text generators to active systems capable of executing tasks and interacting within workflows."
+  }
+]

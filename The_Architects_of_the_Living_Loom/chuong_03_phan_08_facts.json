@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "GPT Assistant Customization",
+    "explanation": "Customizing GPT Assistants involves creating a specific persona or personality, and providing explicit instructions or rules to guide the assistant's behavior and responses.",
+    "importance": "Ensures the assistant provides consistent, relevant, and styled responses tailored to the specific needs of the user or application."
+  },
+  {
+    "concept": "Knowledge Base Restriction",
+    "explanation": "Explicit rules can be defined to force an assistant to only reference and discuss information contained within its uploaded file knowledge base, prohibiting external knowledge.",
+    "importance": "Maintains data integrity and ensures the assistant provides answers exclusively grounded in the provided, verified documents."
+  },
+  {
+    "concept": "Knowledge Assistant Use Cases",
+    "explanation": "Assistants with file-based knowledge bases can perform complex operations beyond simple retrieval, including comparing/contrasting documents, organizing information, classifying content, and generating new text that mimics the style of the source material.",
+    "importance": "Enables small-to-medium entities to analyze and interact with entire collections of documents efficiently without needing enterprise-scale infrastructure."
+  }
+]

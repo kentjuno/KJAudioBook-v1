@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "LLM Self-Correction Feedback Loop",
+    "explanation": "A technique where an LLM is provided with the correct answer after a mistake and tasked with generating its own feedback. This feedback identifies logical errors and suggests heuristics (like drawing timelines or checking relative time frames) to avoid similar mistakes in the future.",
+    "importance": "Enables the extraction of fine-grained reasoning instructions that can be used to augment system prompts and improve model reliability on complex, nuanced problems."
+  },
+  {
+    "concept": "Agentic Planning",
+    "explanation": "The component within an assistant or agent system responsible for organizing a set of tasks into a sequence (serial or parallel) to achieve a goal. It is most frequently used to coordinate the use of external tools.",
+    "importance": "It is fundamental for autonomous agents and complex workflows where multiple steps and tools must be managed to complete a high-level task."
+  },
+  {
+    "concept": "Context-Specific Planning Implementation",
+    "explanation": "Planning implementation varies by application; for instance, autonomous agents implement planning within the LLM or agent prompt on a server to manage complex workflows, while personal assistants might implement it directly within the LLM on a personal device to facilitate simple tool use.",
+    "importance": "Understanding the timing and environment (e.g., during vs. before response generation) allows developers to optimize agent architecture for specific use cases like research or customer service."
+  }
+]

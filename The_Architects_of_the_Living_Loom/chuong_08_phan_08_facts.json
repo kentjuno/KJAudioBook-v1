@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "AI Memory Taxonomy",
+    "explanation": "Classification of AI memory into sensory (brief input holding), short-term/working (active conversation history/context), and long-term (persistent, retrieved semantic data) forms.",
+    "importance": "Provides a framework for designing multi-tiered memory systems in AI agents that mimic human cognitive structures."
+  },
+  {
+    "concept": "Conversational Memory Extraction",
+    "explanation": "A process utilizing an LLM to parse conversation history, summarize content, and extract semantically relevant statements or preferences into a structured format (e.g., JSON) for storage.",
+    "importance": "Enables agents to evolve their knowledge base based on user interaction, allowing for personalized, persistent memory across different chat sessions."
+  },
+  {
+    "concept": "Semantic Memory Augmentation",
+    "explanation": "An advanced retrieval pattern that adds a categorization layer to input processing, extracting questions or concepts to query a vector database, specifically used for organizing episodic, procedural, and semantic data.",
+    "importance": "Allows agents to retrieve contextually relevant information beyond simple keyword matching, improving the quality of reasoning and responses."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Agent Action Decorator",
+    "explanation": "A decorator applied to functions to mark them as 'actions'. This allows frameworks to inspect the function, extract metadata (parameters, docstrings), and automatically generate standardized tool specifications.",
+    "importance": "Simplifies tool registration by removing manual boilerplate, enabling dynamic discovery and seamless integration with LLM function-calling capabilities."
+  },
+  {
+    "concept": "Automated Tool Specification Generation",
+    "explanation": "The process where an agent engine transforms a function's signature and documentation (comment/docstring) into an OpenAI-standard JSON tool schema, defining parameters, types, and descriptions.",
+    "importance": "Allows LLMs to understand, validate, and invoke custom code functions as tools by aligning them with the standard interface expected by LLM APIs."
+  },
+  {
+    "concept": "Parallel Function Calling",
+    "explanation": "A capability in agent engines where the LLM can decide to call multiple tools simultaneously. The engine detects these requests in the API response and executes them concurrently without a strictly defined order.",
+    "importance": "Increases agent efficiency by reducing sequential latency when multiple independent actions are required to satisfy a user request."
+  },
+  {
+    "concept": "Semantic Function",
+    "explanation": "A function that uses a prompt template instead of traditional procedural code to perform tasks. When used as a tool, the prompt serves as the function's description for the LLM.",
+    "importance": "Enables the inclusion of natural language processing tasks directly into the agent's action library alongside standard programmatic functions."
+  }
+]

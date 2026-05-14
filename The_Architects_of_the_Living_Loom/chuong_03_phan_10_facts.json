@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "GPT Store Publishing",
+    "explanation": "The process of making a custom GPT assistant available to other ChatGPT subscribers through the GPT Store interface.",
+    "importance": "Enables distribution and visibility of custom AI agents to a broader user base."
+  },
+  {
+    "concept": "GPT Search Engine Optimization (SEO)",
+    "explanation": "Optimizing a GPT's name and description so that it is more easily discovered via both the GPT Store search and external search engines like Google.",
+    "importance": "Increases discoverability and user adoption of the assistant."
+  },
+  {
+    "concept": "Assistant Metadata",
+    "explanation": "Essential components for publishing a GPT, including a descriptive name, a relevant logo, accurate categorization, and contact links (e.g., social media, GitHub).",
+    "importance": "Provides identity, context, and trust for potential users, and facilitates feedback and support."
+  },
+  {
+    "concept": "Custom Actions in GPTs",
+    "explanation": "Integrating external APIs—such as a FastAPI service—with a GPT assistant to extend its capabilities beyond standard conversational tasks.",
+    "importance": "Allows GPTs to perform real-world tasks, access private data, or interact with other software services dynamically."
+  },
+  {
+    "concept": "Knowledge-Augmented Assistants",
+    "explanation": "Building GPT assistants by uploading specialized documents or datasets, allowing the agent to provide grounded, domain-specific insights.",
+    "importance": "Enables the creation of specialized experts that can query proprietary or domain-specific knowledge effectively."
+  }
+]

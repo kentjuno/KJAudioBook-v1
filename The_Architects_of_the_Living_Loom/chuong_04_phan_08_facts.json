@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "CrewAI Configuration Parameters",
+    "explanation": "CrewAI allows fine-tuning agent behavior through specific parameters: 'memory' for state retention, 'cache' for performance optimization, 'max_rpm' for rate limiting, and 'share_crew' for internal communication.",
+    "importance": "These settings are essential for managing the efficiency, consistency, and resource usage of multi-agent systems."
+  },
+  {
+    "concept": "Agent Observability",
+    "explanation": "Observability involves tracking and analyzing the complex, internal interactions of multi-agent systems, such as LLM call timings, token consumption, and overall workflow performance.",
+    "importance": "It is critical for debugging complex agent behavior and monitoring the operational costs associated with LLM-powered applications."
+  },
+  {
+    "concept": "AgentOps Integration",
+    "explanation": "AgentOps is a specialized observability platform that integrates with frameworks like CrewAI via an API key and simple initialization code to provide visual dashboards of agent performance.",
+    "importance": "It provides transparency into agent operations, including cost tracking and interaction logs, which are necessary for managing enterprise-grade agent deployments."
+  }
+]

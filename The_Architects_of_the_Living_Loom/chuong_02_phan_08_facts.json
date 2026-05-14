@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "Model Type Suitability",
+    "explanation": "Different LLMs serve different roles. Chat completion models are essential for agent applications involving iteration and reasoning, whereas completion and instruct models are more suited to specific, non-iterative tasks.",
+    "importance": "Choosing the correct architecture ensures the model can effectively perform the reasoning and multi-turn interaction required by complex agents."
+  },
+  {
+    "concept": "Training Input and Method",
+    "explanation": "The data used for training defines the model's domain relevance, while the training method affects its ability to generalize, reason, and plan.",
+    "importance": "Domain-specific or fine-tuned models can often outperform larger, general-purpose models for specialized agent tasks."
+  },
+  {
+    "concept": "Context Token Size",
+    "explanation": "Context size dictates the memory capacity of the model. While simple tasks require minimal tokens, multi-agent systems require large context windows to maintain coherence.",
+    "importance": "Insufficient context windows limit the ability of agents to maintain complex, multi-party conversations over a single task."
+  },
+  {
+    "concept": "Inference Speed and Infrastructure",
+    "explanation": "Inference speed depends on the underlying infrastructure. Real-time agent interactions require low latency, while non-interactive background tasks may tolerate slower speeds.",
+    "importance": "Aligning infrastructure with latency requirements is crucial for ensuring a responsive user experience in real-time applications."
+  },
+  {
+    "concept": "Model Cost vs. Deployment",
+    "explanation": "There is a fundamental tradeoff between the convenience of commercial APIs and the control/cost-management of self-hosted, open-source models.",
+    "importance": "Budget and scalability requirements dictate whether a project should rely on paid commercial models or custom infrastructure."
+  }
+]

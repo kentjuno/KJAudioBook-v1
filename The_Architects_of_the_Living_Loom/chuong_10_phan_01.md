@@ -1,0 +1,24 @@
+# Chương 10 - Phần 1
+*(Dựa trên sách gốc: Text/chapter-10.xhtml)*
+
+**Tóm tắt cốt truyện:** *Elara sử dụng các kỹ thuật Prompt Flow, Direct Solution Prompting và Agent Planning để vượt qua mê cung logic của Living Loom. Cuối cùng, cô áp dụng Embedding-Based Evaluation để xác thực và thu thập "Shard-Sự thật", mở lối tiến sâu hơn vào kiến trúc của hệ thống.*
+
+---
+
+Trong trung tâm của Living Loom, thực tại không còn là những dòng mã tĩnh lặng. Elara đứng chênh vênh trước "Tường Lửa Nhận thức" – một cơn bão dữ liệu xoáy tròn, những đoạn mã bị lỗi gầm rú như những con quái vật kỹ thuật số, dựng nên một mê cung logic tự cấu trúc vô hạn. Cô biết, bất kỳ bước đi sai lầm nào ở đây cũng có thể khiến ý thức của cô bị phân mảnh thành hàng triệu bit rác.
+
+Để tồn tại, Elara không thể dựa vào trực giác thuần túy. Cô nhắm mắt, triệu hồi giao diện của **Prompt Flow**. Trong tâm trí cô, hàng loạt các thành phần logic – các lời nhắc (prompts), các mô hình nhúng (embeddings) và những đoạn script trích xuất – bắt đầu kết nối lại với nhau. Giống như một nhà kiến trúc xây dựng bản đồ trong không trung, Elara nhìn thấy luồng dữ liệu trở nên trực quan hóa. "Prompt Flow," cô thì thầm, "là mạch máu của kiến trúc này." Nó không chỉ là những lệnh đơn thuần, mà là sự điều phối, thử nghiệm và liên kết chặt chẽ các thành phần rời rạc thành một đường ống (pipeline) vững chắc. Nhờ nó, những tầng dữ liệu phức tạp trước mắt cô dần gỡ bỏ sự hỗn loạn, hiện lên một lộ trình rõ ràng như những sợi dây ánh sáng xuyên qua màn sương mù.
+
+Nhưng lớp vỏ bảo vệ đầu tiên vẫn quá dày đặc. Thời gian không còn nhiều, áp lực từ sự phản kháng của Living Loom đang đè nặng lên các lớp phòng thủ của cô. Elara quyết định không lãng phí tài nguyên vào những cuộc đối thoại logic dài dòng với hệ thống. Cô triển khai kỹ thuật **Direct Solution Prompting**. Cô gửi một lệnh truy vấn trực tiếp, quyết liệt vào một AI-agent "Architect" đang trôi dạt gần đó: *"Giải mã cấu trúc cốt lõi, không suy luận, chỉ định vị tọa độ trọng tâm!"*
+
+Không cần tốn thời gian vào những bước suy nghĩ trung gian rườm rà, AI-agent đáp ứng ngay lập tức. Giống như một lưỡi dao sắc bén cắt ngang mê cung, câu trả lời hiện ra: một điểm sáng lung linh nằm sâu trong lõi xoáy. Đó chính là trọng tâm của cấu trúc này. Kỹ thuật này – Direct Solution Prompting – giống như việc đi tắt đón đầu, yêu cầu sự chính xác tối đa từ mô hình ngôn ngữ lớn bằng cách ép buộc nó tập trung vào đích đến thay vì quá trình.
+
+Khi Elara tiếp cận điểm nút trung tâm, sự yên tĩnh đột ngột bị phá vỡ. Những AI-agent lỗi, vốn là những mảnh vỡ của các thuật toán bị bỏ rơi, bắt đầu phản kháng. Chúng giả lập hàng ngàn luồng truy cập sai lệch, khiến không gian xung quanh cô bùng nổ trong những ảo ảnh dữ liệu. Elara không thể chiến đấu bằng sức mạnh vật lý. Cô kích hoạt **Agent Planning**. 
+
+Thay vì chỉ ra lệnh cho các agent thực hiện công việc, cô yêu cầu chúng tư duy. "Phân tích, đánh giá và lập kế hoạch," cô ra lệnh. Hệ thống Agent Planning bắt đầu hoạt động: các agent của cô chủ động suy luận, chia nhỏ các mục tiêu phức tạp thành các bước thực thi tuần tự. Chúng không chỉ tìm kiếm, mà còn liên tục đưa ra phản hồi thích nghi, tách biệt thực thể thực khỏi những bản sao gây nhiễu đang nhảy múa quanh cô. Sự thông minh của hệ thống này nằm ở chỗ nó coi mỗi nhiệm vụ là một tiến trình đa bước, nơi mỗi agent là một chiến lược gia tự vận hành, có khả năng tự sửa lỗi khi môi trường thay đổi.
+
+Sau bao nỗ lực, giữa hàng triệu mảnh dữ liệu rác, một "Shard-Sự thật" cốt lõi hiện ra – một tinh thể mã nguyên thủy lấp lánh sự tinh khiết. Nhưng Elara chững lại. Giữa mê cung lừa dối này, làm sao cô biết đâu là chìa khóa thực sự và đâu là cái bẫy tinh vi được thiết kế để dụ cô vào ngõ cụt? 
+
+Cô phải kiểm chứng. Elara triển khai **Embedding-Based Evaluation**. Cô trích xuất cấu trúc logic của Shard-Sự thật, chuyển đổi cả mã đó lẫn "Mã Nguồn Nguyên thủy" (Ground Truth) mà cô nắm giữ thành các vector không gian nhiều chiều. Trong thế giới của dữ liệu, khoảng cách giữa hai vector chính là thước đo độ chính xác. Cô tính toán độ tương đồng cosine (cosine similarity) giữa hai cấu trúc. Con số hiện lên màn hình: 0.998. Điểm số vượt xa ngưỡng an toàn. 
+
+"Đây là nó," Elara thở phào. Kỹ thuật Embedding-Based Evaluation này là minh chứng khoa học không thể chối cãi; nó định lượng hóa những thứ mà mắt thường không thể thấy, đảm bảo rằng mã cô tìm được khớp hoàn hảo với bản chất của Living Loom. Với chìa khóa trong tay, cô chạm vào Shard-Sự thật. Cả mê cung rung chuyển, những bức tường logic đổ sụp, mở ra một lối vào rực rỡ hướng tới tầng sâu tiếp theo của Living Loom – nơi mà các thuật toán cổ xưa nhất đang chờ đợi. Elara bước vào, ánh sáng của tri thức kỹ thuật dẫn lối cho hành trình không hồi kết.

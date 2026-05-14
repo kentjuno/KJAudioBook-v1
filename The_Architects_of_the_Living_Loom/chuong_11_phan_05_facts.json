@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Agentic Planning",
+    "explanation": "A capability that allows AI agents to complete multiple sequential tasks to achieve complex, multi-step goals.",
+    "importance": "It is essential for moving beyond simple prompt-response interactions to autonomous problem-solving."
+  },
+  {
+    "concept": "Integrated Reasoning (LLM-level)",
+    "explanation": "A shift where reasoning, planning, and evaluation are handled directly within the LLM architecture (like OpenAI o1) rather than through external prompt engineering.",
+    "importance": "Improves performance in math, science, and general calculation tasks by allowing the model to 'think' or process steps before outputting a final answer."
+  },
+  {
+    "concept": "Stepwise Decomposition",
+    "explanation": "The process where a model breaks down a complex problem into a reconstructed timeline or a series of logical steps to reach a conclusion.",
+    "importance": "Provides a clear audit trail of the model's logic, making it easier to identify specific points of failure or error in the reasoning process."
+  },
+  {
+    "concept": "Feedback Iteration Loop",
+    "explanation": "A mechanism in agentic systems that provides corrections to the model to help it rectify problems quickly, bypassing the limitations of static external planning.",
+    "importance": "Crucial for preventing the model from proceeding with incorrect assumptions, ensuring higher reliability in autonomous systems."
+  }
+]

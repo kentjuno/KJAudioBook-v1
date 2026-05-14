@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Local Code Execution",
+    "explanation": "Assistants can generate and execute code locally by integrating custom actions like 'run_code' and 'run_shell_command' (e.g., for installing modules via pip).",
+    "importance": "Enables rapid iteration and tuning of generated code compared to standard environments, though it requires caution regarding isolation."
+  },
+  {
+    "concept": "Assistant Event Logs",
+    "explanation": "A feature in the OpenAI Assistants API that captures and displays tool and action events as they happen in real-time.",
+    "importance": "Provides visibility into the 'black box' behavior of assistants, essential for diagnostics and understanding LLM reasoning processes."
+  },
+  {
+    "concept": "Agentic Behavior Trees (ABTs)",
+    "explanation": "An extension of traditional behavior trees applied to agents where actions and transition conditions are directed by LLM prompts rather than rigid logic.",
+    "importance": "Introduces dynamic, stochastic decision-making capabilities to agent orchestration, allowing for more flexible agent behaviors."
+  },
+  {
+    "concept": "Recursive Assistant Management",
+    "explanation": "The practice of creating and configuring assistants using specialized 'Manager Assistants' rather than manually through an interface.",
+    "importance": "Scales the deployment and maintenance of complex agent systems by automating the assistant creation lifecycle."
+  }
+]

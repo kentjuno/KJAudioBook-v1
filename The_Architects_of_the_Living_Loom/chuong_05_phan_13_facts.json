@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "Semantic Function",
+    "explanation": "A component in Semantic Kernel that encapsulates a prompt or profile template used to interact with an LLM, typically for creative or generative tasks.",
+    "importance": "Enables the encapsulation and reuse of complex LLM prompts within an AI application architecture."
+  },
+  {
+    "concept": "Native Function",
+    "explanation": "Code-based functions that perform specific actions, such as interacting with external APIs, databases, or local interfaces, independent of the LLM generation process.",
+    "importance": "Provides the mechanism for an LLM agent to interact with the real world and perform actionable tasks beyond text generation."
+  },
+  {
+    "concept": "Semantic Kernel (SK)",
+    "explanation": "An open-source project from Microsoft designed for building AI applications by orchestrating the interaction between LLMs, semantic functions, and native functions.",
+    "importance": "Acts as the integration layer that allows developers to bridge LLMs with custom plugins, effectively transforming LLMs into functional agents."
+  },
+  {
+    "concept": "Function Orchestration",
+    "explanation": "The process of combining semantic and native functions, potentially layering them as execution stages, to achieve complex workflows.",
+    "importance": "Allows for sophisticated, multi-step agent behaviors, such as generating content based on data retrieved from external APIs."
+  },
+  {
+    "concept": "Plugin/Service Wrapping",
+    "explanation": "The technique of wrapping existing web APIs or code bases to expose them as plugins or services that an LLM agent can invoke.",
+    "importance": "Extends the utility of an agent by enabling it to leverage existing infrastructure and data sources in a conversational manner."
+  }
+]

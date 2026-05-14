@@ -1,0 +1,20 @@
+{
+    "speakerVoiceParams": {
+        "elara": {
+            "age": "middle-aged",
+            "pitch": "low pitch",
+            "gender": "female"
+        },
+        "kael": {
+            "gender": "male",
+            "pitch": "low pitch",
+            "age": "young adult"
+        }
+    },
+    "lockedVoices": {
+        "narration": true,
+        "elara": true,
+        "kael": true
+    },
+    "flowkitProjectId": "a59651a1-70ff-44b6-ac42-c26d90ad28ef"
+}

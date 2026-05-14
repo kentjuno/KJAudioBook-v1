@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Document Splitting (Chunking)",
+    "explanation": "The process of breaking large documents into smaller, semantically meaningful sections. This allows retrieval systems to provide only the most relevant context to an LLM, reducing token usage and improving result accuracy compared to submitting entire documents.",
+    "importance": "Essential for managing token limitations and optimizing the cost and quality of RAG systems."
+  },
+  {
+    "concept": "RecursiveCharacterTextSplitter",
+    "explanation": "A LangChain utility designed to split text by trying to keep related characters and sentences together, often by looking for specific separators (like paragraphs or line breaks) to create chunks of a specified size with a defined overlap.",
+    "importance": "Provides a robust, configurable way to automate document segmentation while maintaining semantic context."
+  },
+  {
+    "concept": "Chunk Overlap",
+    "explanation": "A parameter in document splitting that maintains a portion of the previous chunk within the next one. This ensures that context isn't lost at the boundaries where a document is split.",
+    "importance": "Crucial for maintaining semantic continuity between chunks during retrieval."
+  },
+  {
+    "concept": "Retrieval-Augmented Generation (RAG) Pattern",
+    "explanation": "An architecture where external data is retrieved and added to a model's prompt to augment its knowledge. The workflow includes loading, transforming, embedding, and storing content for later semantic search.",
+    "importance": "Enables models to access up-to-date or proprietary information without the need for full retraining."
+  }
+]

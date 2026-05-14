@@ -1,0 +1,27 @@
+[
+  {
+    "concept": "AI Interface",
+    "explanation": "A paradigm shift in software development where agents consume services, tools, and data via natural language-based interfaces rather than traditional programmatic interfaces.",
+    "importance": "Empowers agents to achieve higher task accuracy and creates more trustworthy, autonomous applications."
+  },
+  {
+    "concept": "Agent (Assistant)",
+    "explanation": "An entity that automates interaction with an LLM to act, produce an effect, or achieve a specific result.",
+    "importance": "Serves as the foundational building block for AI systems capable of executing tasks on behalf of users."
+  },
+  {
+    "concept": "Autonomous Agents",
+    "explanation": "Agents capable of making independent decisions to complete tasks, distinct from non-autonomous agent systems.",
+    "importance": "Crucial distinction for determining the level of human oversight and system capability."
+  },
+  {
+    "concept": "Multi-Agent Systems",
+    "explanation": "Systems where multiple agent profiles work collaboratively, often managed by a proxy, to accomplish complex goals.",
+    "importance": "Enables the decomposition and execution of complex tasks that exceed the capability of a single agent."
+  },
+  {
+    "concept": "Core Agent Components",
+    "explanation": "The primary building blocks of an agent: Profile/Persona (tasks/responses), Actions/Tools (execution), Knowledge/Memory (context/token optimization), Reasoning/Evaluation (problem solving), and Planning/Feedback (task organization).",
+    "importance": "Provides a framework for designing and developing robust, functional agent systems."
+  }
+]

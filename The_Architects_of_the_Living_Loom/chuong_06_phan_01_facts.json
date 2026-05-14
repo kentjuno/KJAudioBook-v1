@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Behavior Trees (BTs)",
+    "explanation": "A hierarchical pattern used for controlling autonomous agents, robotics, and game AI. They utilize a tree-based structure composed of specific node types (Composite, Task, Decorator) to determine system behavior.",
+    "importance": "Provides a robust, scalable framework for managing complex decision-making and autonomous actions in agents."
+  },
+  {
+    "concept": "Behavior Tree Node Status",
+    "explanation": "Behavior trees operate on a system of returning 'success' or 'failure' from every node (including conditions and control nodes) instead of relying on traditional Boolean logic.",
+    "importance": "Enables standardized flow control and clear state management across hierarchical task structures."
+  },
+  {
+    "concept": "Primary Behavior Tree Nodes",
+    "explanation": "Nodes are categorized into functional types: Composite (Selector/Fallback, Sequence, Parallel) for structuring control flow; Task (Condition, Action) for execution; and Decorator for controlling child node execution or implementing guardrails.",
+    "importance": "These building blocks allow for the creation of complex, modular, and reusable behavioral architectures."
+  },
+  {
+    "concept": "Control Barrier Functions",
+    "explanation": "A method used within behavior tree decorators to act as safety guardrails, monitoring and potentially blocking or preventing unwanted or unsafe agent behaviors.",
+    "importance": "Essential for ensuring autonomous agents operate within defined safety limits."
+  }
+]

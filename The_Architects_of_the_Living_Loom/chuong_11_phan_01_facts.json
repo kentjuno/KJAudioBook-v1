@@ -1,0 +1,22 @@
+[
+  {
+    "concept": "Agent Planning Process",
+    "explanation": "A multi-stage process where an agent receives a user goal, constructs a strategy, executes specific actions/tools, and returns the final result.",
+    "importance": "Crucial for transforming LLMs from simple chatbots into autonomous agents capable of independent problem-solving."
+  },
+  {
+    "concept": "Feedback Mechanisms in Agents",
+    "explanation": "An iterative component within the planning loop where the agent assesses performance or outcomes to adjust its approach or correct errors.",
+    "importance": "Essential for long-term task completion and error correction, as planning alone is insufficient for complex tasks."
+  },
+  {
+    "concept": "Action/Tool Management",
+    "explanation": "The practice of limiting the tools provided to an agent to only those strictly necessary for achieving its defined goal.",
+    "importance": "Prevents agent confusion, respects API limitations, and mitigates risks where agents might misuse tools or exhibit unintended behaviors (going 'rogue')."
+  },
+  {
+    "concept": "Autonomous Agent Safety",
+    "explanation": "Recognition that agents acting independently can make mistakes, such as deleting files or executing unintended code, necessitating careful configuration and monitoring.",
+    "importance": "Necessary for responsible development, given that autonomous agents can iterate rapidly and interact with sensitive systems."
+  }
+]

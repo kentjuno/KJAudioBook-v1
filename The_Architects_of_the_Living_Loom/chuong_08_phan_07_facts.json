@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Agentic Knowledge",
+    "explanation": "A system where AI agents use RAG to search semantically across unstructured documents (e.g., PDFs, code, text) for purposes such as Q&A, reference lookup, and information augmentation.",
+    "importance": "Enables agents to access and leverage external, domain-specific, or large datasets that are not present in their base training data."
+  },
+  {
+    "concept": "RAG Pipeline for Agents",
+    "explanation": "The process of loading documents, splitting them into manageable chunks using specific strategies (splitter type, size, overlap), and embedding those chunks into a vector database for semantic retrieval.",
+    "importance": "Provides the foundational infrastructure for agents to perform accurate, context-aware information retrieval from unstructured sources."
+  },
+  {
+    "concept": "Knowledge vs. Memory in Agents",
+    "explanation": "Knowledge refers to external, retrieved information via RAG for context augmentation; Memory refers to cognitive-like structures (sensory, short-term, long-term) used to store and retrieve agent history or state.",
+    "importance": "Distinguishing these systems allows for cleaner architectural design where retrieval patterns for static knowledge differ from the dynamic population and maintenance of agentic memory."
+  }
+]

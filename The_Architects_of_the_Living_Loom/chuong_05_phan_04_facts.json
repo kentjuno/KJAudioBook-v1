@@ -1,0 +1,17 @@
+[
+  {
+    "concept": "Tool Call Orchestration",
+    "explanation": "The process where function outputs are appended to the message history, which is then fed back to the LLM to generate a natural language response.",
+    "importance": "Enables the LLM to process external data or perform actions and incorporate those results into conversational context."
+  },
+  {
+    "concept": "Semantic Kernel (SK)",
+    "explanation": "An open-source project from Microsoft designed to build AI applications (agents) by orchestrating actions, which are defined as 'plugins' (formerly known as 'skills').",
+    "importance": "Provides a robust, standardized framework for managing multiple plugins, actions, memory, and planning in AI agents."
+  },
+  {
+    "concept": "Plugin (Semantic Plugin)",
+    "explanation": "A wrapper for skills or functions that allows an agent to perform specific actions, utilizing OpenAI plugin definitions for interoperability.",
+    "importance": "Allows agents to interact with external systems and services using a consistent, portable format."
+  }
+]
