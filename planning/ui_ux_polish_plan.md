@@ -83,7 +83,10 @@ Added `title=` to: VideoClip delete X, AudioClip delete X, Timeline play/pause, 
 - **Change:** Add `title="..."` to each, in Vietnamese to match the UI language
 - **Risk:** Zero
 
-### [ ] 7. Collapsible Voice Casting panel
+### [x] 7. Collapsible Voice Casting panel
+- Added `isVoicePanelCollapsed` to useProjectStore (persisted to IndexedDB).
+- Voice Casting header gets an X button to collapse; script section header gets a "▸ Voice Casting" pill button to re-open (only visible when collapsed).
+- When collapsed, script editor expands from `lg:col-span-8` to `lg:col-span-12`. Smooth column transition.
 - **Files:** `components/script/ScriptSidebar.tsx`, `store/useProjectStore.ts`
 - **Today:** Right `lg:col-span-4` voice panel always expanded in Audio Studio
 - **Change:**

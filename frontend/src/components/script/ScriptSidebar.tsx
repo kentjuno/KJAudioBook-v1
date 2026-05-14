@@ -8,6 +8,7 @@ import React, { useRef } from 'react';
 import {
   Settings, Play, FileText, Volume2, Trash2, Loader2, Save,
   Copy, ArrowUpDown, GripVertical, ChevronDown, ChevronUp,
+  PanelRightOpen, X,
 } from 'lucide-react';
 import { useProjectStore } from '../../store/useProjectStore';
 import { usePlaybackStore } from '../../store/usePlaybackStore';
@@ -59,6 +60,8 @@ export function ScriptSidebar({
   const charactersMetadata  = useProjectStore(s => s.charactersMetadata);
   const activeVideoNodeLineIds = usePlaybackStore ? [] : []; // populated by VideoStudio sync
   const zoomLevel           = usePlaybackStore(s => s.zoomLevel);
+  const isVoicePanelCollapsed    = useProjectStore(s => s.isVoicePanelCollapsed);
+  const setIsVoicePanelCollapsed = useProjectStore(s => s.setIsVoicePanelCollapsed);
 
   const uniqueSpeakers = Array.from(new Set(script.map(l => l.speaker.toLowerCase())));
 
@@ -67,7 +70,7 @@ export function ScriptSidebar({
       className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10"
     >
       {/* ── Left: Script Editor ─────────────────────────────────────────── */}
-      <div className="lg:col-span-8 space-y-6">
+      <div className={`${isVoicePanelCollapsed ? 'lg:col-span-12' : 'lg:col-span-8'} space-y-6 transition-[grid-column] duration-200`}>
         {/* Header row */}
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold text-slate-100 flex items-center gap-2">
@@ -75,6 +78,16 @@ export function ScriptSidebar({
             Kịch Bản (Script Editor)
           </h2>
           <div className="flex items-center gap-4">
+            {/* Re-open Voice Casting panel (visible when collapsed) */}
+            {isVoicePanelCollapsed && (
+              <button
+                onClick={() => setIsVoicePanelCollapsed(false)}
+                className="flex items-center gap-1.5 text-sm text-indigo-400 hover:text-indigo-300 transition-colors px-2 py-1 rounded-md bg-indigo-500/10 hover:bg-indigo-500/20"
+                title="Mở lại Voice Casting"
+              >
+                <PanelRightOpen className="w-4 h-4" /> Voice Casting
+              </button>
+            )}
             {/* Select all */}
             <label className="flex items-center gap-2 text-sm text-slate-400 cursor-pointer hover:text-slate-300 transition-colors">
               <input
@@ -304,6 +317,7 @@ export function ScriptSidebar({
       </div>
 
       {/* ── Right: Voice Casting ─────────────────────────────────────────── */}
+      {!isVoicePanelCollapsed && (
       <div className="lg:col-span-4 flex flex-col gap-6 sticky top-24 h-[calc(100vh-8rem)] overflow-y-auto pb-4">
         <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl shrink-0">
           <div className="flex items-center justify-between mb-6">
@@ -311,13 +325,22 @@ export function ScriptSidebar({
               <Settings className="w-5 h-5 text-indigo-400" />
               <h2 className="text-lg font-semibold text-slate-100">Voice Casting</h2>
             </div>
-            <button
-              onClick={handleSaveProfile}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors text-xs font-medium"
-              title="Lưu các thiết lập Giọng nói và Google Project ID"
-            >
-              <Save className="w-3.5 h-3.5" /> Lưu Cấu Hình
-            </button>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={handleSaveProfile}
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors text-xs font-medium"
+                title="Lưu các thiết lập Giọng nói và Google Project ID"
+              >
+                <Save className="w-3.5 h-3.5" /> Lưu Cấu Hình
+              </button>
+              <button
+                onClick={() => setIsVoicePanelCollapsed(true)}
+                className="p-1.5 rounded-lg text-slate-500 hover:text-slate-300 hover:bg-slate-800 transition-colors"
+                title="Thu gọn Voice Casting"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
           </div>
 
           <div className="space-y-5">
@@ -437,6 +460,7 @@ export function ScriptSidebar({
           </div>
         </div>
       </div>
+      )}
     </main>
   );
 }

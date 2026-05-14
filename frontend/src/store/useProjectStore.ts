@@ -46,6 +46,10 @@ interface ProjectState {
 
   globalArtStyle: string;
   setGlobalArtStyle: (style: string) => void;
+
+  // ── Panel UI prefs ───────────────────────────────────────────────────────
+  isVoicePanelCollapsed: boolean;
+  setIsVoicePanelCollapsed: (collapsed: boolean) => void;
 }
 
 const initialScript: ScriptLine[] = [
@@ -115,6 +119,10 @@ export const useProjectStore = create<ProjectState>()(
 
       globalArtStyle: '',
       setGlobalArtStyle: (style) => set({ globalArtStyle: style }),
+
+      // ── Panel UI prefs ────────────────────────────────────────────────
+      isVoicePanelCollapsed: false,
+      setIsVoicePanelCollapsed: (collapsed) => set({ isVoicePanelCollapsed: collapsed }),
     }),
     {
       name: 'audiobook-project',
@@ -128,6 +136,7 @@ export const useProjectStore = create<ProjectState>()(
         speakerVoiceParams: state.speakerVoiceParams,
         flowkitProjectId: state.flowkitProjectId,
         globalArtStyle: state.globalArtStyle,
+        isVoicePanelCollapsed: state.isVoicePanelCollapsed,
       }),
     }
   )
