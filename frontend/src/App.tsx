@@ -952,7 +952,12 @@ function App() {
       try {
         const response = await axios.post('http://localhost:8000/api/generate-script', { text });
         if (response.data && response.data.script) {
-          setScript(response.data.script);
+          // AI-generated scripts come back without `id` fields — assign sequentially
+          const withIds = response.data.script.map((line: any, idx: number) => ({
+            ...line,
+            id: typeof line.id === 'number' ? line.id : idx,
+          }));
+          setScript(withIds);
           setTimelineClips([]);
           setTimelineTime(0);
         }

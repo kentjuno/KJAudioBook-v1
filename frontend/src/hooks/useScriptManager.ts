@@ -44,7 +44,12 @@ export function useScriptManager({
       try {
         const json = JSON.parse(e.target?.result as string);
         if (Array.isArray(json)) {
-          setScript(json);
+          // Defensive: imported JSON may not have `id` on each line — backend requires it
+          const withIds = json.map((line: any, idx: number) => ({
+            ...line,
+            id: typeof line.id === 'number' ? line.id : idx,
+          }));
+          setScript(withIds);
           setTimelineClips([]);
           setTimelineTime(0);
         }
