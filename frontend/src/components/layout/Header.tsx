@@ -250,6 +250,20 @@ export function Header({
         </div>
 
       </div>
+
+      {/* Bottom-edge progress bar — visible during render/mix */}
+      {(renderProgress.status === 'rendering' || renderProgress.status === 'assembling') && (
+        <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-slate-900/40">
+          {renderProgress.status === 'rendering' && renderProgress.totalLines > 0 ? (
+            <div
+              className="h-full bg-gradient-to-r from-indigo-500 to-indigo-300 shadow-[0_0_8px_rgba(99,102,241,0.6)] transition-all duration-300"
+              style={{ width: `${Math.min(100, (renderProgress.currentLine / renderProgress.totalLines) * 100)}%` }}
+            />
+          ) : (
+            <div className="h-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)] animate-pulse" />
+          )}
+        </div>
+      )}
     </header>
   );
 }

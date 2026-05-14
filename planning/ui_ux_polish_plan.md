@@ -51,7 +51,8 @@
   - Apply consistently — one primary per tab area, secondaries for support, tertiary for low-priority
 - **Risk:** Low
 
-### [ ] 5. Real progress bar under the header
+### [x] 5. Real progress bar under the header
+Thin 3px bar at the bottom edge of the header. Determinate indigo fill during line-by-line rendering (`currentLine/totalLines`). Indeterminate amber pulse during assembling/mixing (no percent available until #10 wires the WS progress message). Bar has a soft glow shadow so it reads as active.
 - **Files:** `components/layout/Header.tsx`
 - **Today:** "Đang Render (2/10)" as text only inside the button label
 - **Change:** Add a thin 2px gradient progress bar across the bottom edge of the header (`absolute bottom-0 left-0 right-0`), width = `(currentLine / totalLines) * 100%`
