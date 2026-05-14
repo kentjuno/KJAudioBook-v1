@@ -4,6 +4,23 @@
 // State (activeTab, renderProgress) from Zustand.
 // Callbacks passed as props (handleRenderAll, handleMixAndExport, etc.)
 // because they rely on business logic still in App.tsx.
+//
+// Button hierarchy convention used across the app:
+//   Primary CTA (top-level)  : rounded-full bg-{color}-600 hover:bg-{color}-500
+//                              text-white shadow-lg shadow-{color}-500/25
+//                              px-5 py-2 + optional hover:scale-105
+//   Primary (in-panel)       : rounded-lg  bg-indigo-600 hover:bg-indigo-500
+//                              text-white  (e.g. Voice Casting "Lưu Cấu Hình")
+//   Secondary / tertiary     : rounded-full text-slate-300 hover:bg-slate-800
+//                              (ghost; e.g. File menu trigger)
+//   Tinted inline action     : rounded-lg  bg-{color}-500/10 text-{color}-400
+//                              (e.g. per-row buttons in ScriptSidebar)
+//
+// Semantic colors:
+//   indigo = primary (Render, Voice config, AI Director)
+//   amber  = secondary action (Mix & Export)
+//   emerald = success / move-forward (Sync To Timeline, Download)
+//   red    = danger (Delete)
 // ==========================================================================
 import React, { useRef, useState, useEffect } from 'react';
 import {
@@ -202,7 +219,7 @@ export function Header({
                 <a
                   href={renderProgress.finalAudioUrl}
                   download={timelineVideoClips.length > 0 ? 'Final_Audiobook_Video.mp4' : 'Final_Audiobook.mp3'}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-emerald-600 hover:bg-emerald-500 text-white transition-colors animate-pulse"
+                  className="flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-500/25 transition-all hover:scale-105 active:scale-95 animate-pulse"
                 >
                   <Download className="w-4 h-4" />
                   {timelineVideoClips.length > 0 ? 'Tải Video Về' : 'Tải Audio Về'}

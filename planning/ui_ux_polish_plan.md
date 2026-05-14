@@ -38,7 +38,10 @@
 - **Outcome:** Reduces visual noise; brand feels intentional
 - **Risk:** Low. Find/replace tailwind classes.
 
-### [ ] 3. Standardize button hierarchy
+### [x] 3. Standardize button hierarchy
+- Found that buttons were already largely consistent (size-based: full → lg → md).
+- Only fix needed: Download link (Post-Production) didn't match other header CTAs (no shadow, smaller padding) — brought it in line.
+- Added a doc-comment at top of `Header.tsx` codifying the convention so new buttons follow it.
 - **Files:** Component buttons across the app
 - **Today:** Mix of `rounded-full` gradient, `rounded-lg` solid, ghost — applied inconsistently
 - **Change:** Define 3 tiers in a comment in `Header.tsx`:
