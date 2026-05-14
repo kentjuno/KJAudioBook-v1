@@ -6,9 +6,9 @@ TEMP_DIR = "temp_audio"
 OUTPUT_DIR = "output"
 PROFILE_FILE = os.path.join(os.path.dirname(__file__), "project_profile.json")
 
-print("Đang boot server và load mô hình AI...")
+print("Booting server — loading AI model...")
 audio_gen = AudioGenerator()
-print("Boot hoàn tất!")
+print("Boot complete!")
 
 flowkit_state = {
     "flowKey": None,

@@ -3,7 +3,7 @@ import os
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 from text_processor import clean_markdown, safe_call_gemini_director
-from visual_pipeline import extract_characters_and_locations, generate_visual_prompt
+from visual_pipeline import update_entities_metadata, regenerate_line_prompt
 
 router = APIRouter()
 
@@ -59,7 +59,7 @@ async def api_generate_script(req: ScriptRequest):
 @router.post("/api/regen-visual-prompt")
 async def api_regen_visual_prompt(req: RegenPromptRequest):
     try:
-        prompt = generate_visual_prompt(req.line_text, req.context_text, req.visual_references)
+        prompt = regenerate_line_prompt(req.line_text, req.context_text, req.visual_references)
         return {"prompt": prompt}
     except Exception as e:
         raise HTTPException(500, str(e))
@@ -69,7 +69,7 @@ async def api_regen_visual_prompt(req: RegenPromptRequest):
 async def api_extract_entities(req: ExtractEntitiesRequest):
     if not req.text:
         raise HTTPException(400, "Empty script")
-    metadata = extract_characters_and_locations(req.text)
+    metadata = update_entities_metadata(req.text)
     return {"status": "success", "metadata": metadata}
 
 
