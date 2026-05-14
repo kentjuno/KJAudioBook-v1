@@ -10,6 +10,10 @@ import { useAudioMixer } from './hooks/useAudioMixer';
 import { useScriptManager } from './hooks/useScriptManager';
 import { useProjectStore } from './store/useProjectStore';
 import { usePlaybackStore } from './store/usePlaybackStore';
+import { Header } from './components/layout/Header';
+import { ScriptSidebar } from './components/script/ScriptSidebar';
+import { Timeline } from './components/timeline/Timeline';
+import { PropertiesInspector } from './components/inspector/PropertiesInspector';
 
 // Mock data for initial UI state
 const initialScript = [
@@ -1064,878 +1068,90 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-300 font-sans selection:bg-indigo-500/30 flex flex-col">
       
-      <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <Mic className="w-4 h-4 text-white" />
-            </div>
-            <h1 className="text-lg font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-              AudioBook Studio
-            </h1>
-          </div>
-
-          {/* TABS NAVIGATION */}
-          <div className="flex space-x-1 rounded-xl bg-slate-900/80 p-1 border border-slate-800 w-fit">
-            <button
-              onClick={() => setActiveTab('audio')}
-              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 ${
-                activeTab === 'audio'
-                  ? 'bg-indigo-500 text-white shadow-lg shadow-indigo-500/20'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-              }`}
-            >
-              <Mic className="w-4 h-4" /> Audio Studio
-            </button>
-            <button
-              onClick={() => setActiveTab('video')}
-              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 ${
-                activeTab === 'video'
-                  ? 'bg-amber-500 text-slate-900 shadow-lg shadow-amber-500/20'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-              }`}
-            >
-              <Video className="w-4 h-4" /> Video Studio
-            </button>
-            <button
-              onClick={() => { setActiveTab('post-production'); localStorage.setItem('audiobook_active_tab', 'post-production'); }}
-              className={`px-4 py-1.5 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 ${
-                activeTab === 'post-production'
-                  ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
-              }`}
-            >
-              <Settings className="w-4 h-4" /> Post-Production
-            </button>
-          </div>
-          
-          <div className="flex items-center gap-3">
-            {activeTab === 'audio' && (
-              <>
-                <input 
-                  type="file" 
-                  accept=".json" 
-                  className="hidden" 
-                  ref={importInputRef}
-                  onChange={handleImportProject}
-                />
-                <button 
-                  onClick={() => importInputRef.current?.click()}
-                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full text-slate-300 hover:text-white hover:bg-slate-800 transition-colors"
-                  title="Load kịch bản (JSON)"
-                >
-                  <FolderOpen className="w-4 h-4" /> Load JSON
-                </button>
-
-                <button 
-                  onClick={exportProject}
-                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full text-slate-300 hover:text-white hover:bg-slate-800 transition-colors border-r border-slate-700 pr-4 mr-1"
-                  title="Lưu kịch bản (JSON)"
-                >
-                  <Save className="w-4 h-4" /> Save JSON
-                </button>
-
-                <input 
-                  type="file" 
-                  accept=".md,.txt" 
-                  className="hidden" 
-                  ref={fileInputRef}
-                  onChange={handleFileUpload}
-                />
-                <button 
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={isGenerating}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-slate-800 hover:bg-slate-700 transition-colors border border-slate-700 disabled:opacity-50"
-                >
-                  {isGenerating ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
-                  {isGenerating ? "Đang nhờ AI..." : "Upload .md"}
-                </button>
-
-                <button 
-                  onClick={handleRenderAll}
-                  disabled={renderProgress.status === 'rendering' || renderProgress.status === 'assembling' || isGenerating}
-                  className="flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-lg shadow-indigo-500/25 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  {renderProgress.status === 'rendering' || renderProgress.status === 'assembling' ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Play className="w-4 h-4 fill-current" />
-                  )}
-                  {renderProgress.status === 'rendering' 
-                    ? `Đang Render (${renderProgress.currentLine}/${renderProgress.totalLines})` 
-                    : renderProgress.status === 'assembling' 
-                    ? "Đang Ghép Nối..." 
-                    : script.some(l => l.selected) 
-                      ? `Render Selected (${script.filter(l => l.selected).length})` 
-                      : "Render All"}
-                </button>
-              </>
-            )}
-
-            {activeTab === 'post-production' && (
-              <>
-                {renderProgress.status === 'done' && renderProgress.finalAudioUrl && (
-                  <a 
-                    href={renderProgress.finalAudioUrl}
-                    download={timelineVideoClips.length > 0 ? "Final_Audiobook_Video.mp4" : "Final_Audiobook.mp3"}
-                    className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full bg-emerald-600 hover:bg-emerald-500 text-white transition-colors animate-pulse"
-                  >
-                    <Download className="w-4 h-4" />
-                    {timelineVideoClips.length > 0 ? "Tải Video Về" : "Tải Audio Về"}
-                  </a>
-                )}
-                <button 
-                  onClick={handleMixAndExport}
-                  className="flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  <Play className="w-4 h-4 fill-current" />
-                  Mix & Export
-                </button>
-              </>
-            )}
-
-            {activeTab === 'video' && (
-              <button 
-                onClick={() => { handleSyncToTimeline(); setActiveTab('post-production'); localStorage.setItem('audiobook_active_tab', 'post-production'); }}
-                className="flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-full bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:pointer-events-none"
-              >
-                <Video className="w-4 h-4 fill-current" />
-                Sync To Timeline
-              </button>
-            )}
-          </div>
-        </div>
-      </header>
+            <Header 
+        handleImportProject={handleImportProject}
+        exportProject={exportProject}
+        handleFileUpload={handleFileUpload}
+        handleRenderAll={handleRenderAll}
+        handleMixAndExport={handleMixAndExport}
+        handleSyncToTimeline={handleSyncToTimeline}
+        isGenerating={isGenerating}
+      />
 
 
       {activeTab === 'audio' && (
-
-      <main 
-        className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10"
-        style={{ paddingBottom: `${timelineHeight + 32}px` }}
-      >
-        
-        <div className="lg:col-span-8 space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-slate-100 flex items-center gap-2">
-              <FileText className="w-5 h-5 text-indigo-400" />
-              Kịch Bản (Script Editor)
-            </h2>
-            <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 text-sm text-slate-400 cursor-pointer hover:text-slate-300 transition-colors">
-                <input 
-                  type="checkbox"
-                  className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500/50"
-                  checked={script.length > 0 && script.every(l => l.selected)}
-                  onChange={(e) => {
-                    const checked = e.target.checked;
-                    setScript(script.map(l => ({ ...l, selected: checked })));
-                  }}
-                />
-                Chọn Tất Cả
-              </label>
-              <button 
-                onClick={() => setIsSortingMode(!isSortingMode)}
-                className={`text-sm flex items-center gap-1 transition-colors px-2 py-1 rounded-md ${isSortingMode ? 'bg-amber-500/20 text-amber-400' : 'text-slate-400 hover:text-slate-300'}`}
-              >
-                <ArrowUpDown className="w-4 h-4" /> {isSortingMode ? "Đang Sắp Xếp (Tắt)" : "Sắp Xếp"}
-              </button>
-              <button 
-                onClick={addLine}
-                className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center gap-1 transition-colors bg-indigo-500/10 px-2 py-1 rounded-md hover:bg-indigo-500/20"
-              >
-                <Plus className="w-4 h-4" /> Thêm dòng
-              </button>
-            </div>
-          </div>
-
-          <div className="space-y-4" onDragOver={handleDragOverContainer}>
-            {script.map((line, index) => (
-              <div 
-                key={line.id} 
-                id={`script-line-${line.id}`}
-                draggable={isSortingMode}
-                onDragStart={(e) => {
-                  if (isSortingMode) dragItem.current = index;
-                }}
-                onDragEnter={(e) => {
-                  if (isSortingMode) dragOverItem.current = index;
-                }}
-                onDragEnd={handleSort}
-                onDragOver={(e) => e.preventDefault()}
-                className={`group relative border rounded-xl p-4 transition-all duration-300 ${isSortingMode ? 'cursor-move border-amber-500/50 hover:bg-amber-900/10' : ''} ${activeVideoNodeLineIds.includes(line.id) ? 'bg-emerald-900/40 border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)] scale-[1.02]' : line.selected && !isSortingMode ? 'bg-indigo-900/30 border-indigo-500 shadow-[0_0_15px_rgba(99,102,241,0.2)] scale-[1.01]' : 'bg-slate-900 border-slate-800'} ${!isSortingMode && !line.selected && !activeVideoNodeLineIds.includes(line.id) ? 'hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10' : ''}`}
-              >
-                {isSortingMode && (
-                  <div className="absolute -left-10 top-1/2 -translate-y-1/2 text-amber-500/50">
-                    <GripVertical className="w-6 h-6" />
-                  </div>
-                )}
-                <div className={`absolute -left-3 top-1/2 -translate-y-1/2 flex flex-col items-center gap-2 ${isSortingMode ? 'opacity-50 pointer-events-none' : ''}`}>
-                  <div className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-xs text-slate-500 font-mono shadow-sm">
-                    {index + 1}
-                  </div>
-                  <input 
-                    type="checkbox"
-                    className="w-4 h-4 rounded border-slate-700 bg-slate-900 text-indigo-500 focus:ring-indigo-500/50 cursor-pointer"
-                    checked={line.selected || false}
-                    onChange={(e) => {
-                      const newScript = [...script];
-                      newScript[index].selected = e.target.checked;
-                      setScript(newScript);
-                    }}
-                  />
-                </div>
-                
-                {/* Header Compact View */}
-                <div 
-                  className="ml-4 cursor-pointer flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-1"
-                  onClick={(e) => {
-                    toggleScriptLine(line.id, e);
-                    
-                    // Cuộn timeline đến vị trí clip
-                    const clip = timelineClips.find(c => c.lineId === line.id);
-                    if (clip && timelineScrollRef.current) {
-                      const leftPos = clip.startTime * zoomLevel;
-                      timelineScrollRef.current.scrollTo({
-                        left: Math.max(0, leftPos - timelineScrollRef.current.clientWidth / 2 + 100),
-                        behavior: 'smooth'
-                      });
-                    }
-                  }}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 overflow-hidden w-full">
-                    <span className="text-xs font-bold uppercase tracking-wider text-indigo-400 shrink-0 min-w-[80px]">
-                      {line.speaker}
-                    </span>
-                    <span className="text-sm text-slate-300 truncate max-w-full sm:max-w-md opacity-80">
-                      {line.text || "..."}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0 self-end sm:self-auto">
-                    {expandedScriptLines.has(line.id) || isSortingMode ? (
-                      <ChevronUp className="w-4 h-4 text-slate-500 pointer-events-none" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-500 pointer-events-none" />
-                    )}
-                  </div>
-                </div>
-
-                {/* Body Expanded View */}
-                <div className={`ml-4 overflow-hidden transition-all duration-300 ${expandedScriptLines.has(line.id) || isSortingMode ? 'max-h-[1000px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}>
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-800/50">
-                    <div className="w-full sm:w-48 shrink-0 flex flex-col gap-3">
-                      <div>
-                        <label className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1.5 block">Speaker (Voice)</label>
-                        <select 
-                          className="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 appearance-none"
-                          value={line.speaker.toLowerCase()}
-                          onChange={(e) => {
-                            const newScript = [...script];
-                            newScript[index].speaker = e.target.value;
-                            if (!newScript[index].visual_references || newScript[index].visual_references.length === 0 || (newScript[index].visual_references.length === 1 && newScript[index].visual_references[0] === line.speaker)) {
-                                newScript[index].visual_references = [e.target.value];
-                            }
-                            setScript(newScript);
-                          }}
-                        >
-                          <option value="narration">🎙️ Narration</option>
-                          {Object.entries(charactersMetadata).filter(([_, c]) => c.type === 'character').map(([id, c]) => (
-                            <option key={id} value={id}>👨 {c.name}</option>
-                          ))}
-                          {Object.entries(charactersMetadata).filter(([id, c]) => c.type === 'character' || id === 'narration').find(([id, _]) => id === line.speaker.toLowerCase()) ? null : (
-                            <option value={line.speaker.toLowerCase()}>❓ {line.speaker}</option>
-                          )}
-                        </select>
-                      </div>
-
-                    </div>
-                  
-                  <div className="flex-1">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label className="text-xs font-medium text-slate-500 uppercase tracking-wider block">Lời thoại</label>
-                      <select 
-                        className="text-xs bg-slate-800 border border-slate-700 rounded text-indigo-300 py-1 px-2 focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                        onChange={(e) => {
-                          const tag = e.target.value;
-                          if (!tag) return;
-                          
-                          const textarea = document.getElementById(`textarea-${line.id}`) as HTMLTextAreaElement;
-                          const newScript = [...script];
-                          
-                          if (textarea) {
-                            const startPos = textarea.selectionStart;
-                            const endPos = textarea.selectionEnd;
-                            const textBefore = line.text.substring(0, startPos);
-                            const textAfter = line.text.substring(endPos);
-                            
-                            // Insert space if needed
-                            const padLeft = (textBefore.length > 0 && !textBefore.endsWith(' ')) ? ' ' : '';
-                            const padRight = (textAfter.length > 0 && !textAfter.startsWith(' ')) ? ' ' : '';
-                            const textToInsert = padLeft + tag + padRight;
-                            
-                            newScript[index].text = textBefore + textToInsert + textAfter;
-                            setScript(newScript);
-                            
-                            // Return focus and cursor position after React re-renders
-                            setTimeout(() => {
-                              textarea.focus();
-                              const newPos = startPos + textToInsert.length;
-                              textarea.setSelectionRange(newPos, newPos);
-                            }, 0);
-                          } else {
-                            // Fallback
-                            newScript[index].text = line.text + (line.text.endsWith(' ') ? '' : ' ') + tag;
-                            setScript(newScript);
-                          }
-                          
-                          e.target.value = ""; // Reset dropdown
-                        }}
-                      >
-                        <option value="">+ Chèn cảm xúc...</option>
-                        <option value="[laughter]">😂 Cười gằn [laughter]</option>
-                        <option value="[sigh]">😮‍💨 Thở dài [sigh]</option>
-                        <option value="[surprise-ah]">😲 Ngạc nhiên A! [surprise-ah]</option>
-                        <option value="[surprise-oh]">😯 Ngạc nhiên Ồ! [surprise-oh]</option>
-                        <option value="[surprise-wa]">🤯 Bất ngờ Oa! [surprise-wa]</option>
-                        <option value="[question-en]">🤔 Thắc mắc Hả? [question-en]</option>
-                        <option value="[dissatisfaction-hnn]">😒 Bực dọc Hừ! [dissatisfaction-hnn]</option>
-                      </select>
-                    </div>
-                    <textarea 
-                      id={`textarea-${line.id}`}
-                      className="w-full bg-transparent text-slate-300 resize-none outline-none leading-relaxed mt-2 p-3 rounded-lg border border-transparent hover:border-slate-700/50 focus:border-indigo-500/50 focus:bg-slate-800/50 transition-all text-sm sm:text-base"
-                      rows={3}
-                      value={line.text}
-                      onChange={(e) => {
-                        const newScript = [...script];
-                        newScript[index].text = e.target.value;
-                        setScript(newScript);
-                      }}
-                    />
-
-                  </div>
-                  
-                  <div className="flex sm:flex-col justify-end gap-2 shrink-0 items-center">
-                    {renderProgress.status === 'rendering' && renderProgress.currentLine === index + 1 && (
-                      <Loader2 className="w-5 h-5 text-indigo-400 animate-spin" />
-                    )}
-                    {renderProgress.status === 'done' && (
-                      <span className="text-emerald-400">✅</span>
-                    )}
-                    <button 
-                      onClick={() => playSample(line.id, line.text, line.speaker)}
-                      disabled={playingId !== null}
-                      className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 hover:text-indigo-300 transition-colors disabled:opacity-50" 
-                      title="Nghe thử dòng này"
-                    >
-                      {playingId === line.id ? <Loader2 className="w-5 h-5 animate-spin" /> : <Volume2 className="w-5 h-5" />}
-                    </button>
-                    <button 
-                      onClick={() => deleteLine(line.id)}
-                      className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 transition-colors" 
-                      title="Xoá dòng này"
-                    >
-                      <Trash2 className="w-5 h-5" />
-                    </button>
-                  </div>
-                </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="lg:col-span-4 flex flex-col gap-6 sticky top-24 h-[calc(100vh-8rem)] overflow-y-auto pb-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl shrink-0">
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Settings className="w-5 h-5 text-purple-400" />
-                <h2 className="text-lg font-semibold text-slate-100">Voice Casting</h2>
-              </div>
-              <button 
-                onClick={handleSaveProfile}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-colors text-xs font-medium"
-                title="Lưu các thiết lập Giọng nói và Google Project ID"
-              >
-                <Save className="w-3.5 h-3.5" /> Lưu Cấu Hình
-              </button>
-            </div>
-            
-            <div className="space-y-5">
-              {uniqueSpeakers.map(speaker => (
-                <div key={speaker} className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-                  <div 
-                    className="flex justify-between items-center cursor-pointer hover:bg-slate-900/50 p-2 -m-2 rounded-lg transition-colors"
-                    onClick={(e) => toggleVoice(speaker, e)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <img src={`https://api.dicebear.com/7.x/bottts/svg?seed=${speaker}`} alt={speaker} className="w-10 h-10 rounded-full bg-slate-800 border border-slate-700 p-1" />
-                      <h3 className="font-medium text-slate-200 capitalize text-lg">{speaker}</h3>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      {lockedVoices[speaker] && (
-                        <button 
-                          onClick={() => togglePlayVoiceRef(speaker)}
-                          className={`flex items-center justify-center w-7 h-7 rounded-full transition-all ${
-                            playingVoiceRef === speaker 
-                              ? 'bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.5)]' 
-                              : 'bg-indigo-500/20 text-indigo-400 hover:bg-indigo-500/40'
-                          }`}
-                          title="Nghe giọng mẫu"
-                        >
-                          {playingVoiceRef === speaker ? (
-                            <div className="w-2.5 h-2.5 bg-current rounded-sm animate-pulse" />
-                          ) : (
-                            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
-                          )}
-                        </button>
-                      )}
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md border mt-1 ${
-                        lockedVoices[speaker] 
-                          ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' 
-                          : 'bg-slate-800 text-slate-400 border-slate-700'
-                      }`}>
-                        {lockedVoices[speaker] ? '✅ Locked' : 'No Voice'}
-                      </span>
-                      {expandedVoices.has(speaker) ? (
-                        <ChevronUp className="w-4 h-4 text-slate-500 ml-2 pointer-events-none" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 text-slate-500 ml-2 pointer-events-none" />
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Expanded Body */}
-                  <div className={`overflow-hidden transition-all duration-300 ${expandedVoices.has(speaker) ? 'max-h-[500px] opacity-100 mt-4' : 'max-h-0 opacity-0 mt-0 pointer-events-none'}`}>
-                    <div className="flex flex-col gap-3 pt-4 border-t border-slate-800/50">
-                      <div className="grid grid-cols-3 gap-2">
-                        <div>
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-slate-500 mb-1 block">Giới tính</label>
-                        <select 
-                          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                          value={speakerVoiceParams[speaker]?.gender || "male"}
-                          onChange={(e) => setSpeakerVoiceParams({...speakerVoiceParams, [speaker]: { ...(speakerVoiceParams[speaker] || {age: 'middle-aged', pitch: 'low pitch'}), gender: e.target.value }})}
-                        >
-                          <option value="male">👨 Nam</option>
-                          <option value="female">👩 Nữ</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-slate-500 mb-1 block">Độ tuổi</label>
-                        <select 
-                          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                          value={speakerVoiceParams[speaker]?.age || "middle-aged"}
-                          onChange={(e) => setSpeakerVoiceParams({...speakerVoiceParams, [speaker]: { ...(speakerVoiceParams[speaker] || {gender: 'male', pitch: 'low pitch'}), age: e.target.value }})}
-                        >
-                          <option value="child">Trẻ em</option>
-                          <option value="teenager">Thiếu niên</option>
-                          <option value="young adult">Thanh niên</option>
-                          <option value="middle-aged">Trung niên</option>
-                          <option value="elderly">Cao tuổi</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-slate-500 mb-1 block">Tone giọng</label>
-                        <select 
-                          className="w-full bg-slate-900 border border-slate-800 rounded-lg px-2 py-1.5 text-xs text-slate-300 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-                          value={speakerVoiceParams[speaker]?.pitch || "low pitch"}
-                          onChange={(e) => setSpeakerVoiceParams({...speakerVoiceParams, [speaker]: { ...(speakerVoiceParams[speaker] || {gender: 'male', age: 'middle-aged'}), pitch: e.target.value }})}
-                        >
-                          <option value="very high pitch">Rất cao</option>
-                          <option value="high pitch">Cao</option>
-                          <option value="moderate pitch">Vừa</option>
-                          <option value="low pitch">Trầm</option>
-                          <option value="very low pitch">Rất trầm</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2">
-                      <button className="flex-1 px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors border border-slate-700">Đổi File</button>
-                      <button className="flex-1 px-3 py-1.5 text-xs font-medium bg-slate-800 hover:bg-slate-700 rounded-lg transition-colors border border-slate-700">Audio Editor</button>
-                    </div>
-                    <button 
-                      onClick={() => createSyntheticVoice(speaker)}
-                      disabled={isCreatingSynthetic === speaker}
-                      className={`w-full flex items-center justify-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg transition-colors border disabled:opacity-50 ${
-                        lockedVoices[speaker]
-                          ? 'bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border-emerald-500/20'
-                          : 'bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/20'
-                      }`}
-                    >
-                      {isCreatingSynthetic === speaker ? <Loader2 className="w-3 h-3 animate-spin" /> : (lockedVoices[speaker] ? "↻" : "+")} 
-                      {lockedVoices[speaker] ? "Tạo Lại (Re-Lock)" : "Tạo Diễn Viên Ảo (Lock Voice)"}
-                    </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
-        </div>
-      </main>
+      <ScriptSidebar
+        addLine={addLine}
+        deleteLine={deleteLine}
+        playSample={playSample}
+        handleDragOverContainer={handleDragOverContainer}
+        handleSort={handleSort}
+        createSyntheticVoice={createSyntheticVoice}
+        togglePlayVoiceRef={togglePlayVoiceRef}
+        handleSaveProfile={handleSaveProfile}
+        isSortingMode={isSortingMode}
+        setIsSortingMode={setIsSortingMode}
+        playingId={playingId}
+        isCreatingSynthetic={isCreatingSynthetic}
+        playingVoiceRef={playingVoiceRef}
+        expandedScriptLines={expandedScriptLines}
+        toggleScriptLine={toggleScriptLine}
+        expandedVoices={expandedVoices}
+        toggleVoice={toggleVoice}
+        timelineScrollRef={timelineScrollRef}
+        dragItem={dragItem}
+        dragOverItem={dragOverItem}
+      />
       )}
 
       {(activeTab === 'audio' || activeTab === 'post-production') && (
-      <div 
-        className={activeTab === 'post-production' 
-          ? "flex-1 relative bg-slate-900 shadow-2xl flex flex-col z-50 overflow-hidden w-full h-full" 
-          : "fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-700 shadow-2xl flex flex-col z-50 transition-none"}
-        style={activeTab === 'post-production' ? {} : { height: `${timelineHeight}px` }}
-      >
-        {/* Resize Handle */}
-        {activeTab === 'audio' && (
-          <div 
-            className="absolute top-0 left-0 right-0 h-2 -mt-1 cursor-row-resize bg-transparent hover:bg-indigo-500/50 z-50"
-            onMouseDown={handleTimelineResizeStart}
-          />
-        )}
-
-        {/* Post-Production Workspace (Video Preview & Inspector) */}
-        {activeTab === 'post-production' && (
-          <div className="flex-[1.5] flex min-h-[300px] border-b border-slate-800 bg-slate-950">
-            {/* Video Preview */}
-            <div className="flex-1 flex flex-col items-center justify-center relative bg-black/80 p-6">
-              <div className="w-full max-w-4xl aspect-video bg-black rounded-xl border border-slate-800 shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center relative overflow-hidden ring-1 ring-white/5">
-                {timelineVideoClips.length === 0 ? (
-                  <>
-                    <Video className="w-12 h-12 text-slate-700 mb-3 opacity-50" />
-                    <span className="text-slate-500 font-medium tracking-widest text-sm uppercase">Video Preview</span>
-                    <span className="text-slate-600 text-xs mt-1">Sync video from Video Studio</span>
-                  </>
-                ) : (
-                  <>
-                    {timelineVideoClips.map(clip => (
-                      <video
-                        key={clip.id}
-                        ref={el => { if (el) timelineVideoRefs.current[clip.id] = el; }}
-                        src={clip.videoUrl}
-                        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-100 ${
-                          timelineTime >= clip.startTime && timelineTime < clip.startTime + clip.duration 
-                            ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
-                        }`}
-                        muted={!clip.keepSound}
-                        loop={false}
-                        playsInline
-                      />
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-            
-            {/* Properties Inspector */}
-            <div className="w-[340px] bg-slate-900 border-l border-slate-800 p-5 overflow-y-auto flex flex-col shadow-[-10px_0_30px_rgba(0,0,0,0.2)] z-10">
-              <div className="flex items-center gap-2 border-b border-slate-700 pb-3 mb-5">
-                <Settings className="w-4 h-4 text-emerald-400" />
-                <h3 className="text-sm font-bold text-slate-200 tracking-wide uppercase">Properties Inspector</h3>
-              </div>
-              {!selectedLine ? (
-                <div className="text-xs text-slate-500 text-center py-12 border border-dashed border-slate-700 rounded-xl bg-slate-900/50 flex flex-col items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center mb-3">
-                    <Play className="w-5 h-5 text-slate-600" />
-                  </div>
-                  <span>Click a clip on the timeline<br/>to inspect and edit properties</span>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-6">
-                  {/* General Info */}
-                  <div>
-                    <h4 className="text-xs font-semibold text-slate-400 mb-2 uppercase tracking-wider">Line Info</h4>
-                    <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                      <div className="flex justify-between items-center mb-1">
-                        <span className="text-[10px] text-slate-500">Speaker</span>
-                        <span className="text-[10px] font-bold text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded">{selectedLine.speaker}</span>
-                      </div>
-                      <p className="text-xs text-slate-300 italic line-clamp-3">"{selectedLine.text}"</p>
-                    </div>
-                  </div>
-
-                  {/* Video Properties */}
-                  {selectedVideoClip ? (
-                    <div>
-                      <h4 className="text-xs font-semibold text-amber-500 mb-2 uppercase tracking-wider flex items-center gap-1">
-                        <Video className="w-3 h-3" /> Video Properties
-                      </h4>
-                      <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 flex flex-col gap-3">
-                        <div className="flex items-center justify-between">
-                          <label className="text-xs text-slate-300">Keep Original Sound</label>
-                          <button 
-                            onClick={() => {
-                              setTimelineVideoClips(prev => prev.map(c => c.id === selectedVideoClip.id ? { ...c, keepSound: !c.keepSound } : c));
-                            }}
-                            className={`text-[10px] px-2 py-1 rounded transition-colors font-semibold ${selectedVideoClip.keepSound ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'}`}
-                          >
-                            {selectedVideoClip.keepSound ? 'ON' : 'OFF'}
-                          </button>
-                        </div>
-                        
-                        {selectedVideoClip.keepSound && (
-                          <div className="flex flex-col gap-1.5">
-                            <div className="flex items-center justify-between">
-                              <label className="text-xs text-slate-300">Volume</label>
-                              <span className="text-[10px] text-emerald-400 font-mono">{selectedVideoClip.volume ?? 100}%</span>
-                            </div>
-                            <input 
-                              type="range" 
-                              min="0" 
-                              max="200" 
-                              value={selectedVideoClip.volume ?? 100}
-                              onChange={(e) => {
-                                setTimelineVideoClips(prev => prev.map(c => c.id === selectedVideoClip.id ? { ...c, volume: parseInt(e.target.value) } : c));
-                              }}
-                              className="w-full accent-emerald-500 bg-slate-700 h-1.5 rounded-full appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:bg-emerald-400 [&::-webkit-slider-thumb]:rounded-full cursor-pointer"
-                            />
-                          </div>
-                        )}
-                        
-                        <div className="flex flex-col gap-1.5 mt-1">
-                          <label className="text-xs text-slate-300">Offset Time (s)</label>
-                          <div className="flex items-center gap-2">
-                             <input 
-                               type="number" 
-                               step="0.1" 
-                               value={selectedVideoClip.startTime.toFixed(1)}
-                               onChange={(e) => {
-                                 const val = parseFloat(e.target.value);
-                                 if (!isNaN(val)) {
-                                   setTimelineVideoClips(prev => prev.map(c => c.id === selectedVideoClip.id ? { ...c, startTime: val } : c));
-                                 }
-                               }}
-                               className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-slate-300 w-full font-mono"
-                             />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+        <Timeline
+          toggleTimelinePlay={toggleTimelinePlay}
+          handleTimelineSeek={handleTimelineSeek}
+          handleClearTimeline={handleClearTimeline}
+          handleTimelineClipMouseDown={handleTimelineClipMouseDown}
+          handleVideoClipMouseDown={handleVideoClipMouseDown}
+          handleVideoResizeMouseDown={handleVideoResizeMouseDown}
+          handleDeleteTimelineClip={handleDeleteTimelineClip}
+          handleTimelineResizeStart={handleTimelineResizeStart}
+          timelineScrollRef={timelineScrollRef}
+          timelineAudioRefs={timelineAudioRefs}
+          timelineVideoRefs={timelineVideoRefs}
+        >
+          {activeTab === 'post-production' && (
+            <div className="flex-[1.5] flex min-h-[300px] border-b border-slate-800 bg-slate-950">
+              <div className="flex-1 flex flex-col items-center justify-center relative bg-black/80 p-6">
+                <div className="w-full max-w-4xl aspect-video bg-black rounded-xl border border-slate-800 shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center relative overflow-hidden ring-1 ring-white/5">
+                  {timelineVideoClips.length === 0 ? (
+                    <>
+                      <Video className="w-12 h-12 text-slate-700 mb-3 opacity-50" />
+                      <span className="text-slate-500 font-medium tracking-widest text-sm uppercase">Video Preview</span>
+                      <span className="text-slate-600 text-xs mt-1">Sync video from Video Studio</span>
+                    </>
                   ) : (
-                    <div className="bg-amber-900/10 border border-amber-500/20 rounded-lg p-3 text-center">
-                      <span className="text-xs text-amber-500/70">No video clip linked to this line.</span>
-                    </div>
-                  )}
-
-                  {/* Audio Properties */}
-                  {selectedAudioClip && (
-                    <div>
-                      <h4 className="text-xs font-semibold text-indigo-400 mb-2 uppercase tracking-wider flex items-center gap-1">
-                        <Mic className="w-3 h-3" /> Audio Properties
-                      </h4>
-                      <div className="bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 flex flex-col gap-3">
-                        <div className="flex flex-col gap-1.5 mt-1">
-                          <label className="text-xs text-slate-300">Offset Time (s)</label>
-                          <div className="flex items-center gap-2">
-                             <input 
-                               type="number" 
-                               step="0.1" 
-                               value={selectedAudioClip.startTime.toFixed(1)}
-                               onChange={(e) => {
-                                 const val = parseFloat(e.target.value);
-                                 if (!isNaN(val)) {
-                                   setTimelineClips(prev => prev.map(c => c.id === selectedAudioClip.id ? { ...c, startTime: val } : c));
-                                 }
-                               }}
-                               className="bg-slate-900 border border-slate-700 rounded px-2 py-1 text-xs text-slate-300 w-full font-mono"
-                             />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <>
+                      {timelineVideoClips.map(clip => (
+                        <video
+                          key={clip.id}
+                          ref={el => { if (el) timelineVideoRefs.current[clip.id] = el; }}
+                          src={clip.videoUrl}
+                          className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-100 ${
+                            timelineTime >= clip.startTime && timelineTime < clip.startTime + clip.duration 
+                              ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                          }`}
+                          muted={!clip.keepSound}
+                          loop={false}
+                          playsInline
+                        />
+                      ))}
+                    </>
                   )}
                 </div>
-              )}
-            </div>
-          </div>
-        )}
-        <div className="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700">
-          <div className="flex items-center gap-2">
-            <h3 className="text-sm font-semibold text-amber-400 flex items-center gap-2">
-              <Play className="w-4 h-4" /> Stories Editor (Timeline)
-            </h3>
-            <span className="text-xs text-slate-400 ml-4">
-              Tổng số clip: {timelineClips.length}
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <button 
-              onClick={toggleTimelinePlay}
-              className={`p-1.5 rounded-full ${isPlayingTimeline ? 'bg-amber-500 text-slate-900' : 'bg-slate-700 hover:bg-slate-600 text-amber-400'}`}
-            >
-              {isPlayingTimeline ? <Pause className="w-4 h-4" fill="currentColor" /> : <Play className="w-4 h-4" fill="currentColor" />}
-            </button>
-            <div className="text-xs font-mono text-amber-400 bg-slate-900 px-2 py-1 rounded w-16 text-center border border-slate-700">
-              {timelineTime.toFixed(1)}s
-            </div>
-            {activeTab === 'audio' && (
-              <button 
-                onClick={() => { setActiveTab('post-production'); localStorage.setItem('audiobook_active_tab', 'post-production'); }}
-                className="ml-2 px-3 py-1 bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors text-xs font-semibold rounded"
-              >
-                Sync to Post-Production
-              </button>
-            )}
-            <button 
-              onClick={handleClearTimeline}
-              className="ml-2 px-3 py-1 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-colors text-xs font-semibold rounded border border-rose-500/20"
-              title="Xóa toàn bộ Timeline"
-            >
-              Clear
-            </button>
-            <div className="flex items-center gap-1 ml-4 bg-slate-900 rounded border border-slate-700 px-2 py-1">
-              <button onClick={() => setZoomLevel(Math.max(10, zoomLevel - 10))} className="text-slate-400 hover:text-amber-400">-</button>
-              <span className="text-[10px] text-slate-500 w-8 text-center">{zoomLevel}%</span>
-              <button onClick={() => setZoomLevel(Math.min(200, zoomLevel + 10))} className="text-slate-400 hover:text-amber-400">+</button>
-            </div>
-          </div>
-        </div>
-
-        {/* Timeline Tracks Container */}
-        <div ref={timelineScrollRef} className="flex-1 overflow-auto relative bg-slate-900/50 p-2">
-          {/* Ruler (Thước đo động) */}
-          <div 
-            className="h-6 border-b border-slate-700 mb-2 relative opacity-50 cursor-pointer hover:bg-slate-800 transition-colors"
-            onClick={handleTimelineSeek}
-            style={{ width: `${Math.max(20, ...timelineClips.map(c => c.startTime + c.duration)) * zoomLevel + 500}px` }}
-          >
-            {Array.from({ length: Math.ceil(Math.max(20, timelineClips.length > 0 ? Math.max(...timelineClips.map(c => c.startTime + c.duration)) : 0) / 2) + 10 }).map((_, i) => (
-              <div key={i} className="absolute top-0 text-[10px] text-slate-500" style={{ left: `${i * 2 * zoomLevel}px` }}>
-                {i * 2}s
               </div>
-            ))}
-          </div>
-
-          {/* Các rãnh âm thanh và hình ảnh */}
-          <div className="relative min-h-[150px]">
-            {/* Video Track Background */}
-            {activeTab === 'post-production' && (
-              <div className="absolute top-0 left-0 right-0 h-16 border-b-2 border-indigo-500/30 flex items-center bg-indigo-900/10 opacity-60">
-                <span className="absolute left-2 text-[10px] text-indigo-400 font-bold">Video Track</span>
-              </div>
-            )}
-
-            {/* Audio Tracks Background */}
-            {[0, 1, 2, 3].map(trackIndex => (
-              <div key={`track-${trackIndex}`} className="absolute left-0 right-0 h-16 border-b border-slate-800 flex items-center opacity-20" style={{ top: `${(activeTab === 'post-production' ? 70 : 0) + trackIndex * 64}px` }}>
-                <span className="absolute left-2 text-[10px] text-slate-500 font-bold">Track {trackIndex}</span>
-              </div>
-            ))}
-
-            {/* Playhead */}
-            <div 
-              className="absolute top-0 bottom-0 w-0.5 bg-red-500 z-50 pointer-events-none"
-              style={{ left: `${timelineTime * zoomLevel}px` }}
-            >
-              <div className="w-3 h-3 bg-red-500 -ml-[5px] -mt-1 rounded-sm shadow-md flex items-center justify-center"></div>
+              <PropertiesInspector />
             </div>
-
-            {/* Render Video Clips */}
-            {activeTab === 'post-production' && timelineVideoClips.map((clip) => {
-              const top = 0; // Video track is at 0
-              const left = clip.startTime * zoomLevel;
-              const width = clip.duration * zoomLevel;
-              const isSelected = selectedTimelineVideoClipId === clip.id || (!selectedTimelineVideoClipId && !selectedTimelineAudioClipId && script.find(l => l.id === clip.lineId)?.selected);
-              const isDragging = draggingVideoClipId === clip.id;
-
-              return (
-                <div 
-                  key={clip.id}
-                  className={`absolute h-14 rounded-md overflow-hidden transition-all duration-200 shadow-md cursor-move ${
-                    isDragging ? 'opacity-70 z-40 ring-2 ring-white scale-[1.02] bg-indigo-500/80 border-indigo-400' :
-                    isSelected 
-                      ? 'z-30 bg-indigo-500/90 border-2 border-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.6)]' 
-                      : 'z-20 bg-indigo-900/80 border border-indigo-400 hover:bg-indigo-800'
-                  }`}
-                  style={{ top: `${top + 4}px`, left: `${left}px`, width: `${width}px` }}
-                  onMouseDown={(e) => handleVideoClipMouseDown(e, clip)}
-                >
-                  {/* Left Resize Handle */}
-                  <div
-                    className="absolute left-0 top-0 bottom-0 w-2 cursor-col-resize hover:bg-white/30 z-50 transition-colors group"
-                    onMouseDown={(e) => handleVideoResizeMouseDown(e, clip, 'left')}
-                  >
-                    <div className="absolute left-0.5 top-1/2 -translate-y-1/2 h-4 w-0.5 bg-white/50 group-hover:bg-white rounded-full pointer-events-none"></div>
-                  </div>
-
-                  <div className={`px-1 py-0.5 text-[9px] font-bold truncate flex justify-between items-center relative z-10 ${isSelected ? 'text-indigo-50 bg-indigo-400/50' : 'text-indigo-200 bg-indigo-800/50'}`}>
-                    <span className="flex items-center gap-1">
-                      Video <span className="opacity-70 font-mono">({clip.duration.toFixed(1)}s)</span>
-                    </span>
-                    <div className="flex items-center gap-1">
-                      <button 
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setTimelineVideoClips(prev => prev.filter(c => c.id !== clip.id));
-                        }}
-                        className="text-indigo-200 hover:text-red-400 bg-transparent p-0.5 rounded transition-colors"
-                      >
-                        <X className="w-3 h-3" />
-                      </button>
-                    </div>
-                  </div>
-                  {/* Thumbnail / Visual representation */}
-                  <div className="w-full h-full mt-1 relative flex items-center justify-center pointer-events-none">
-                     <div className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay" style={{backgroundImage: `url(http://localhost:8000/api/video/thumbnail?url=${encodeURIComponent(clip.videoUrl)})`}} />
-                     <Video className="w-4 h-4 text-indigo-300 opacity-50 absolute" />
-                  </div>
-
-                  {/* Right Resize Handle */}
-                  <div
-                    className="absolute right-0 top-0 bottom-0 w-2 cursor-col-resize hover:bg-white/30 z-50 transition-colors group"
-                    onMouseDown={(e) => handleVideoResizeMouseDown(e, clip, 'right')}
-                  >
-                    <div className="absolute right-0.5 top-1/2 -translate-y-1/2 h-4 w-0.5 bg-white/50 group-hover:bg-white rounded-full pointer-events-none"></div>
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Render Audio Clips */}
-            {timelineClips.map((clip) => {
-              const top = (activeTab === 'post-production' ? 70 : 0) + clip.track * 64; // Offset audio tracks by 70px only in post-production
-              const left = clip.startTime * zoomLevel;
-              const width = clip.duration * zoomLevel;
-              const isDragging = draggingTimelineClipId === clip.id;
-              const isSelected = selectedTimelineAudioClipId === clip.id || (!selectedTimelineAudioClipId && !selectedTimelineVideoClipId && script.find(l => l.id === clip.lineId)?.selected);
-
-              return (
-                <div 
-                  key={clip.id}
-                  onMouseDown={(e) => handleTimelineClipMouseDown(e, clip)}
-                  className={`absolute h-14 rounded-md overflow-hidden cursor-move transition-all duration-200 shadow-md ${
-                    isDragging 
-                      ? 'opacity-70 z-40 ring-2 ring-white scale-[1.02] bg-amber-500/80 border-amber-400' 
-                      : isSelected 
-                        ? 'z-30 bg-indigo-500/90 border-2 border-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.6)]' 
-                        : 'z-10 bg-amber-500/80 border border-amber-400 hover:bg-amber-400'
-                  }`}
-                  style={{ top: `${top + 4}px`, left: `${left}px`, width: `${width}px` }}
-                >
-                  <div className={`px-1 py-0.5 text-[9px] font-bold truncate flex justify-between items-center ${isSelected ? 'text-indigo-50 bg-indigo-400/50' : 'text-slate-900 bg-amber-400/50'}`}>
-                    <span>{clip.speaker}</span>
-                    <button 
-                      onClick={(e) => handleDeleteTimelineClip(e, clip.id)}
-                      className={`${isSelected ? 'text-indigo-100 hover:text-red-300 hover:bg-indigo-500' : 'text-slate-900 hover:text-red-700 hover:bg-amber-400'} bg-transparent p-0.5 rounded transition-colors`}
-                    >
-                      <X className="w-3 h-3" />
-                    </button>
-                  </div>
-                  {/* Waveform Real */}
-                  <div className="w-full mt-1 opacity-70 flex items-center px-1">
-                    <Waveform audioUrl={clip.audioUrl} width={width} />
-                  </div>
-                  {/* Audio Element Hidden */}
-                  <audio 
-                    src={clip.audioUrl} 
-                    ref={el => {
-                      if (el) timelineAudioRefs.current[clip.id] = el;
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+          )}
+        </Timeline>
       )}
 
       {activeTab === 'video' && (

@@ -12,6 +12,7 @@ import { VideoClip } from './VideoClip';
 import type { TimelineClip, TimelineVideoClip } from '../../types';
 
 interface TimelineProps {
+  children?: React.ReactNode;
   // Playback controls
   toggleTimelinePlay: () => void;
   handleTimelineSeek: (e: React.MouseEvent) => void;
@@ -35,6 +36,7 @@ export function Timeline({
   handleVideoResizeMouseDown, handleDeleteTimelineClip,
   handleTimelineResizeStart,
   timelineScrollRef, timelineAudioRefs, timelineVideoRefs,
+  children,
 }: TimelineProps) {
   const script                  = useProjectStore(s => s.script);
   const timelineClips           = useProjectStore(s => s.timelineClips);
@@ -72,6 +74,8 @@ export function Timeline({
           onMouseDown={handleTimelineResizeStart}
         />
       )}
+
+      {children}
 
       {/* Transport bar */}
       <div className="flex items-center justify-between px-4 py-2 bg-slate-800 border-b border-slate-700">
