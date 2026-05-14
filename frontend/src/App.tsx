@@ -10,6 +10,13 @@ import { useKeyboardShortcuts } from './hooks/useKeyboardShortcuts';
 import { useTimelinePlayback } from './hooks/useTimelinePlayback';
 import { useAudioMixer } from './hooks/useAudioMixer';
 import { useScriptManager } from './hooks/useScriptManager';
+import {
+  useGenerateScript,
+  useExtractEntities,
+  useEnhanceMotion,
+  useCreateSyntheticVoice,
+  useSaveProfile,
+} from './hooks/api/mutations';
 import { useProjectStore } from './store/useProjectStore';
 import { usePlaybackStore } from './store/usePlaybackStore';
 import { Header } from './components/layout/Header';
@@ -153,13 +160,10 @@ function App() {
 
   // ── Local UI state (not shared, no need for store) ───────────────────────
   const [activeVideoNodeLineIds, setActiveVideoNodeLineIds] = useState<number[]>([]);
-  const [isGenerating, setIsGenerating]                     = useState(false);
   const [playingId, setPlayingId]                           = useState<number | null>(null);
-  const [isCreatingSynthetic, setIsCreatingSynthetic]       = useState<string | null>(null);
   const [playingVoiceRef, setPlayingVoiceRef]               = useState<string | null>(null);
   const [expandedScriptLines, setExpandedScriptLines]       = useState<Set<number>>(new Set());
   const [expandedVoices, setExpandedVoices]                 = useState<Set<string>>(new Set());
-  const [isExtractingEntities, setIsExtractingEntities]     = useState<boolean>(false);
   const [isGeneratingAsset, setIsGeneratingAsset]           = useState<string | null>(null);
   const [renderingVideos, setRenderingVideos]               = useState<Record<number, string>>({});
   const [videoStatus, setVideoStatus]                       = useState<Record<number, string>>({});
@@ -168,8 +172,19 @@ function App() {
   const dragOverItem = useRef<number | null>(null);
   const [isGeneratingVideo, setIsGeneratingVideo]           = useState<number | null>(null);
   const [isRegeneratingPrompt, setIsRegeneratingPrompt]     = useState<number | null>(null);
-  const [isEnhancingMotion, setIsEnhancingMotion]           = useState<number | null>(null);
   const timelineScrollRef = useRef<HTMLDivElement>(null);
+
+  // ── TanStack Query mutations (auto-tracked isPending state) ──────────────
+  const generateScriptMut       = useGenerateScript();
+  const extractEntitiesMut      = useExtractEntities();
+  const enhanceMotionMut        = useEnhanceMotion();
+  const createSyntheticVoiceMut = useCreateSyntheticVoice();
+  const saveProfileMut          = useSaveProfile();
+
+  const isGenerating          = generateScriptMut.isPending;
+  const isExtractingEntities  = extractEntitiesMut.isPending;
+  const isCreatingSynthetic   = createSyntheticVoiceMut.isPending ? createSyntheticVoiceMut.variables?.speaker ?? null : null;
+  const isEnhancingMotion     = enhanceMotionMut.isPending ? (enhanceMotionMut.variables as any)?._lineId ?? null : null;
 
   const toggleScriptLine = (id: number, e: React.MouseEvent) => {
     const target = e.target as HTMLElement;
@@ -598,59 +613,41 @@ function App() {
     }
   };
 
-  const createSyntheticVoice = async (speaker: string) => {
+  const createSyntheticVoice = (speaker: string) => {
     const params = speakerVoiceParams[speaker] || { gender: 'male', age: 'middle-aged', pitch: 'low pitch' };
     const instruct = `${params.gender}, ${params.pitch}, ${params.age}`;
-    
-    setIsCreatingSynthetic(speaker);
-    try {
-      const response = await axios.post('http://localhost:8000/api/create-synthetic-voice', {
-        speaker,
-        instruct
-      });
-      toast.success(response.data.message || "Tạo giọng ảo thành công! Đã khoá voice profile.");
-      setLockedVoices(prev => ({ ...prev, [speaker]: true }));
-    } catch (error) {
-      console.error(error);
-      toast.error("Lỗi tạo giọng ảo. Hãy kiểm tra console Backend.");
-    } finally {
-      setIsCreatingSynthetic(null);
-    }
+
+    createSyntheticVoiceMut.mutate({ speaker, instruct }, {
+      onSuccess: (data) => {
+        toast.success(data.message || "Tạo giọng ảo thành công! Đã khoá voice profile.");
+        setLockedVoices(prev => ({ ...prev, [speaker]: true }));
+      },
+      onError: () => toast.error("Lỗi tạo giọng ảo. Hãy kiểm tra console Backend."),
+    });
   };
 
-  const handleExtractEntities = async () => {
+  const handleExtractEntities = () => {
     if (script.length === 0) return;
-    setIsExtractingEntities(true);
-    
-    // Nối tất cả text
     const fullText = script.map(l => l.text).join("\n\n");
-    
-    try {
-      const response = await axios.post('http://localhost:8000/api/extract-entities', { text: fullText });
-      if (response.data && response.data.metadata) {
-        setCharactersMetadata(response.data.metadata);
-        toast.success("Đã trích xuất xong Danh sách Nhân Vật & Bối Cảnh!");
-      }
-    } catch (e) {
-      console.error(e);
-      toast.error("Lỗi khi trích xuất thực thể. Vui lòng check console.");
-    } finally {
-      setIsExtractingEntities(false);
-    }
+    extractEntitiesMut.mutate(fullText, {
+      onSuccess: (data) => {
+        if (data?.metadata) {
+          setCharactersMetadata(data.metadata);
+          toast.success("Đã trích xuất xong Danh sách Nhân Vật & Bối Cảnh!");
+        }
+      },
+      onError: () => toast.error("Lỗi khi trích xuất thực thể. Vui lòng check console."),
+    });
   };
 
-  const handleSaveProfile = async () => {
-    try {
-      await axios.post('http://localhost:8000/api/project-profile', {
-        speakerVoiceParams,
-        lockedVoices,
-        flowkitProjectId
-      });
-      toast.success("Đã lưu toàn bộ thiết lập Voice Casting và Project ID thành công!");
-    } catch (e) {
-      console.error(e);
-      toast.error("Lỗi khi lưu thiết lập!");
-    }
+  const handleSaveProfile = () => {
+    saveProfileMut.mutate(
+      { speakerVoiceParams, lockedVoices, flowkitProjectId },
+      {
+        onSuccess: () => toast.success("Đã lưu toàn bộ thiết lập Voice Casting và Project ID thành công!"),
+        onError: () => toast.error("Lỗi khi lưu thiết lập!"),
+      }
+    );
   };
 
   // Kiểm tra trạng thái Video thủ công
@@ -685,29 +682,24 @@ function App() {
     }
   };
 
-  const handleEnhanceMotion = async (lineId: number, dialogue: string, rawMotion: string) => {
+  const handleEnhanceMotion = (lineId: number, dialogue: string, rawMotion: string) => {
     if (!rawMotion) {
       toast.error("Vui lòng nhập mô tả motion cơ bản trước khi Enhance!");
       return;
     }
-    setIsEnhancingMotion(lineId);
-    try {
-      const res = await axios.post('http://localhost:8000/api/enhance-motion', {
-        dialogue: dialogue,
-        motion_prompt: rawMotion
-      });
-      
-      if (res.data.prompt) {
-        setScript(prev => prev.map(line => 
-          line.id === lineId ? { ...line, motion_prompt: res.data.prompt } : line
-        ));
+    enhanceMotionMut.mutate(
+      { dialogue, motion_prompt: rawMotion, _lineId: lineId },
+      {
+        onSuccess: (data) => {
+          if (data.prompt) {
+            setScript(prev => prev.map(line =>
+              line.id === lineId ? { ...line, motion_prompt: data.prompt } : line
+            ));
+          }
+        },
+        onError: () => toast.error("Lỗi khi enhance motion prompt!"),
       }
-    } catch (e) {
-      console.error(e);
-      toast.error("Lỗi khi enhance motion prompt!");
-    } finally {
-      setIsEnhancingMotion(null);
-    }
+    );
   };
 
   const handleGenerateVideo = async (lineId: number, image_prompt: string, motion_prompt: string, visualReferences: string[]) => {
@@ -945,30 +937,26 @@ function App() {
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       const text = e.target?.result as string;
       if (!text) return;
 
-      setIsGenerating(true);
-      try {
-        const response = await axios.post('http://localhost:8000/api/generate-script', { text });
-        if (response.data && response.data.script) {
-          // AI-generated scripts come back without `id` fields — assign sequentially
-          const withIds = response.data.script.map((line: any, idx: number) => ({
-            ...line,
-            id: typeof line.id === 'number' ? line.id : idx,
-          }));
-          setScript(withIds);
-          setTimelineClips([]);
-          setTimelineTime(0);
-        }
-      } catch (error) {
-        console.error("Lỗi khi tạo kịch bản:", error);
-        toast.error("Có lỗi xảy ra khi gọi AI. Vui lòng check console Backend.");
-      } finally {
-        setIsGenerating(false);
-        if (fileInputRef.current) fileInputRef.current.value = '';
-      }
+      generateScriptMut.mutate(text, {
+        onSuccess: (data) => {
+          if (data?.script) {
+            // AI-generated scripts come back without `id` fields — assign sequentially
+            const withIds = data.script.map((line: any, idx: number) => ({
+              ...line,
+              id: typeof line.id === 'number' ? line.id : idx,
+            }));
+            setScript(withIds);
+            setTimelineClips([]);
+            setTimelineTime(0);
+          }
+        },
+        onError: () => toast.error("Có lỗi xảy ra khi gọi AI. Vui lòng check console Backend."),
+        onSettled: () => { if (fileInputRef.current) fileInputRef.current.value = ''; },
+      });
     };
     reader.readAsText(file);
   };

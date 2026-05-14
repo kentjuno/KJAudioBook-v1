@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import type { Node, Edge } from '@xyflow/react';
 import type { ScriptLine, CharacterMetadata } from '../types';
 import { API } from '../config';
+import { useExtractEntities, useEnhancePrompt } from './api/mutations';
 
 const FLOWKIT_PROJECT_ID = 'a59651a1-70ff-44b6-ac42-c26d90ad28ef';
 
@@ -58,8 +59,14 @@ export function useAIDirector({
   setEdges: React.Dispatch<React.SetStateAction<Edge[]>>;
 }) {
   const [isGeneratingStoryboard, setIsGeneratingStoryboard] = React.useState(false);
-  const [isExtractingEntities, setIsExtractingEntities] = React.useState(false);
-  const [enhancingAssetId, setEnhancingAssetId] = React.useState<string | null>(null);
+
+  // TanStack Query mutations — isPending replaces manual loading flags
+  const extractEntitiesMut = useExtractEntities();
+  const enhancePromptMut = useEnhancePrompt();
+  const isExtractingEntities = extractEntitiesMut.isPending;
+  const enhancingAssetId = enhancePromptMut.isPending
+    ? (enhancePromptMut.variables as any)?._assetId ?? null
+    : null;
 
   // Keep a stable ref to globalArtStyle for use in callbacks
   const globalArtStyleRef = useRef(globalArtStyle);
@@ -199,45 +206,43 @@ export function useAIDirector({
     }
   }, [script, charactersMetadata, setNodes, setEdges]);
 
-  const handleExtractEntities = useCallback(async () => {
+  const handleExtractEntities = useCallback(() => {
     if (!script.length) return;
-    setIsExtractingEntities(true);
-    try {
-      const response = await axios.post(API.extractEntities, { text: script.map((l) => l.text).join('\n\n') });
-      if (response.data?.metadata) {
-        setCharactersMetadata(response.data.metadata);
-        toast.success('Đã trích xuất xong Danh sách Nhân Vật & Bối Cảnh!');
-      }
-    } catch {
-      toast.error('Lỗi khi trích xuất thực thể. Vui lòng check console backend.');
-    } finally {
-      setIsExtractingEntities(false);
-    }
-  }, [script, setCharactersMetadata]);
+    const fullText = script.map((l) => l.text).join('\n\n');
+    extractEntitiesMut.mutate(fullText, {
+      onSuccess: (data) => {
+        if (data?.metadata) {
+          setCharactersMetadata(data.metadata);
+          toast.success('Đã trích xuất xong Danh sách Nhân Vật & Bối Cảnh!');
+        }
+      },
+      onError: () => toast.error('Lỗi khi trích xuất thực thể. Vui lòng check console backend.'),
+    });
+  }, [script, setCharactersMetadata, extractEntitiesMut]);
 
-  const handleEnhancePrompt = useCallback(async (
+  const handleEnhancePrompt = useCallback((
     id: string,
     handleUpdateAsset: (id: string, field: string, value: string) => void
   ) => {
     const entity = charactersMetadata[id];
     if (!entity) return;
-    setEnhancingAssetId(id);
-    try {
-      let basePrompt = entity.description || 'A character';
-      if (entity.variation_context) basePrompt = `Context/Action: ${entity.variation_context}. Character description: ${basePrompt}`;
-      const res = await axios.post(API.enhancePrompt, {
+    let basePrompt = entity.description || 'A character';
+    if (entity.variation_context) basePrompt = `Context/Action: ${entity.variation_context}. Character description: ${basePrompt}`;
+
+    enhancePromptMut.mutate(
+      {
         prompt: basePrompt,
         asset_type: entity.type,
         asset_name: entity.name,
         global_style: globalArtStyleRef.current,
-      });
-      handleUpdateAsset(id, 'image_prompt', res.data.prompt);
-    } catch (e: any) {
-      toast.error('Lỗi Enhance: ' + e.message);
-    } finally {
-      setEnhancingAssetId(null);
-    }
-  }, [charactersMetadata]);
+        _assetId: id,
+      },
+      {
+        onSuccess: (data) => handleUpdateAsset(id, 'image_prompt', data.prompt),
+        onError: (e: any) => toast.error('Lỗi Enhance: ' + e.message),
+      }
+    );
+  }, [charactersMetadata, enhancePromptMut]);
 
   return {
     isGeneratingStoryboard, isExtractingEntities, enhancingAssetId,

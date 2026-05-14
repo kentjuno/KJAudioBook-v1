@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
+    "@tanstack/react-query": "^5.100.10",
+    "@tanstack/react-query-devtools": "^5.100.10",
     "@xyflow/react": "^12.10.2",
     "axios": "^1.16.0",
     "clsx": "^2.1.1",
