@@ -69,4 +69,8 @@ python server.py
 
 extension ref: https://github.com/crisng95/flowkit
 
+Please donate for version 2: 
+<img width="319" height="432" alt="image" src="https://github.com/user-attachments/assets/20b6fe89-20a9-4f24-8ad0-636bd4ca4835" />
+
+
 These commands are starting points only. Let the AI agent inspect the current machine and adjust them.
