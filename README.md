@@ -67,4 +67,6 @@ pip install -r requirements.txt
 python server.py
 ```
 
+extension ref: https://github.com/crisng95/flowkit
+
 These commands are starting points only. Let the AI agent inspect the current machine and adjust them.
