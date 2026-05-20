@@ -87,7 +87,7 @@ class FlowService:
 
     def _build_url(self, path):
         base = "https://aisandbox-pa.googleapis.com"
-        key = "AIzaSyBtrm0o5ab1c-Ec8ZuLcGt3oJAA5VWt3pY"
+        key = os.getenv("FLOWKIT_BROWSER_API_KEY", "YOUR_BROWSER_RESTRICTED_API_KEY")
         sep = "&" if "?" in path else "?"
         return f"{base}{path}{sep}key={key}"
 

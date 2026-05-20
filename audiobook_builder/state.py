@@ -12,6 +12,6 @@ print("Boot complete!")
 
 flowkit_state = {
     "flowKey": None,
-    "callbackSecret": "audiobook_secret_key_123",
+    "callbackSecret": os.getenv("FLOWKIT_CALLBACK_SECRET", "change-me"),
     "active_ws": None,
 }

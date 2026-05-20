@@ -6,8 +6,7 @@
  */
 
 const AGENT_WS_URL = 'ws://127.0.0.1:8000/ws/flowkit';
-// NOTE: This is a browser-restricted public API key — safe to ship in extension bundles.
-const API_KEY = 'AIzaSyBtrm0o5ab1c-Ec8ZuLcGt3oJAA5VWt3pY';
+const API_KEY = 'YOUR_BROWSER_RESTRICTED_API_KEY';
 
 let ws = null;
 let flowKey = null;

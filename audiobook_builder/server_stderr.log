@@ -1,27 +1,0 @@
-Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]Fetching 13 files: 100%|##########| 13/13 [00:00<00:00, 26001.88it/s]
-Loading weights:   0%|          | 0/313 [00:00<?, ?it/s]Loading weights:  33%|###2      | 102/313 [00:00<00:00, 1019.55it/s]Loading weights:  90%|########9 | 281/313 [00:00<00:00, 1454.95it/s]Loading weights: 100%|##########| 313/313 [00:00<00:00, 1430.12it/s]
-Loading weights:   0%|          | 0/527 [00:00<?, ?it/s]Loading weights:  44%|####3     | 231/527 [00:00<00:00, 2305.96it/s]Loading weights:  88%|########7 | 462/527 [00:00<00:00, 2205.17it/s]Loading weights: 100%|##########| 527/527 [00:00<00:00, 2143.03it/s]
-F:\AntiGravity\AudioBook-KJ\audiobook_builder\server.py:149: DeprecationWarning: 
-        on_event is deprecated, use lifespan event handlers instead.
-
-        Read more about it in the
-        [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
-        
-  @app.on_event("startup")
-INFO:     Will watch for changes in these directories: ['F:\\AntiGravity\\AudioBook-KJ\\audiobook_builder']
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [28656] using StatReload
-Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]Fetching 13 files: 100%|##########| 13/13 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/313 [00:00<?, ?it/s]Loading weights:  19%|#8        | 58/313 [00:00<00:00, 570.79it/s]Loading weights:  79%|#######9  | 248/313 [00:00<00:00, 1338.33it/s]Loading weights: 100%|##########| 313/313 [00:00<00:00, 1333.45it/s]
-Loading weights:   0%|          | 0/527 [00:00<?, ?it/s]Loading weights:  43%|####2     | 224/527 [00:00<00:00, 2238.21it/s]Loading weights:  85%|########5 | 448/527 [00:00<00:00, 2096.90it/s]Loading weights: 100%|##########| 527/527 [00:00<00:00, 2022.12it/s]
-Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]Fetching 13 files: 100%|##########| 13/13 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/313 [00:00<?, ?it/s]Loading weights:  22%|##2       | 69/313 [00:00<00:00, 679.10it/s]Loading weights:  82%|########1 | 256/313 [00:00<00:00, 1371.49it/s]Loading weights: 100%|##########| 313/313 [00:00<00:00, 1338.98it/s]
-Loading weights:   0%|          | 0/527 [00:00<?, ?it/s]Loading weights:   0%|          | 1/527 [00:00<01:01,  8.55it/s]Loading weights:  40%|###9      | 210/527 [00:00<00:00, 1144.39it/s]Loading weights:  75%|#######4  | 393/527 [00:00<00:00, 1440.35it/s]Loading weights: 100%|##########| 527/527 [00:00<00:00, 1326.19it/s]
-INFO:     Started server process [5588]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WARNING:  StatReload detected changes in 'test_post.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [5588]

@@ -1,13 +1,68 @@
 node_modules/
+**/node_modules/
 dist/
 build/
 .env
+**/.env
 __pycache__/
-*.pyc
+*.py[cod]
 venv/
 .venv/
 env/
 .DS_Store
 .vscode/
+
+# Local agent/worktree state
+.claude/
+clonegit/
+
+# Planning and private working notes
+planning/
+*plan*.md
+PLAN.md
+
+# Reference docs and manuscript/content
+Docsref/
+The_Architects_of_the_Living_Loom/
+part_titles_list.md
+
+# Python/runtime caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Local databases, logs, and generated data
+*.db
+*.sqlite
+*.sqlite3
+*.log
+progress.json
+out.json
+output.json
+output.txt
+output.html
+result*.txt
+recovered_logs.txt
+
+# Generated audiobook media and private voice references
+*.wav
+*.mp3
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.gif
+*.pdf
 audiobook_builder/output/
+audiobook_builder/outputs/
 audiobook_builder/temp/
+audiobook_builder/temp_audio/
+audiobook_builder/Voice_ref/
+audiobook_builder/images/
+audiobook_builder/*.wav
+audiobook_builder/*.mp3
+audiobook_builder/*.mp4
