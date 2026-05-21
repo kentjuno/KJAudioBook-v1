@@ -128,6 +128,58 @@ Important:
 - Review `manifest.json`, `background.js`, and `side_panel.js` before using it with a personal Google account.
 - Do not publish personal tokens, cookies, generated media, or local DB files.
 
+## References
+
+Use these links to understand the tools and libraries used in this project.
+
+Core tooling:
+
+- [Git documentation](https://git-scm.com/doc)
+- [Node.js downloads](https://nodejs.org/en/download)
+- [npm documentation](https://docs.npmjs.com/)
+- [Python documentation](https://docs.python.org/3/)
+- [FFmpeg documentation](https://www.ffmpeg.org/documentation.html)
+
+Frontend:
+
+- [React documentation](https://react.dev/)
+- [Vite documentation](https://vite.dev/guide/)
+- [Tailwind CSS documentation](https://tailwindcss.com/docs)
+- [TanStack Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [React Flow documentation](https://reactflow.dev/)
+- [Axios documentation](https://axios-http.com/docs/intro)
+- [Lucide React icons](https://lucide.dev/guide/packages/lucide-react)
+
+Backend and API:
+
+- [FastAPI documentation](https://fastapi.tiangolo.com/)
+- [Uvicorn documentation](https://www.uvicorn.org/)
+- [Python multipart package](https://github.com/Kludex/python-multipart)
+
+AI and audio:
+
+- [PyTorch documentation](https://docs.pytorch.org/docs/stable/index.html)
+- [PyTorch install selector](https://pytorch.org/get-started/locally/)
+- [Torchaudio documentation](https://docs.pytorch.org/audio/stable/index.html)
+- [Hugging Face Transformers documentation](https://huggingface.co/docs/transformers/index)
+- [Hugging Face Hub Python library](https://huggingface.co/docs/huggingface_hub/index)
+- [python-soundfile documentation](https://python-soundfile.readthedocs.io/)
+- [pydub GitHub repository](https://github.com/jiaaro/pydub)
+- [OmniVoice GitHub repository](https://github.com/k2-fsa/OmniVoice)
+- [OmniVoice model on Hugging Face](https://huggingface.co/k2-fsa/OmniVoice)
+
+Gemini and browser extension:
+
+- [Gemini CLI GitHub repository](https://github.com/google-gemini/gemini-cli)
+- [Gemini CLI getting started docs](https://github.com/google-gemini/gemini-cli/blob/main/docs/get-started/index.md)
+- [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions)
+- [Chrome Extensions getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted)
+- [Google Flow](https://labs.google/fx/tools/flow)
+
+## Acknowledgements
+
+- Thanks to [crisng95/flowkit](https://github.com/crisng95/flowkit) for the FlowKit extension idea/reference.
+
 ## AI Agent Setup Prompt
 
 Copy this prompt into any coding AI agent after cloning the repository:
@@ -336,6 +388,58 @@ Quan trọng:
 - Extension xin nhiều quyền vì nó bridge giữa browser, local backend và Google Flow.
 - Nên đọc `manifest.json`, `background.js`, `side_panel.js` trước khi dùng với tài khoản Google cá nhân.
 - Không commit token, cookie, media generate hoặc database local.
+
+## Tài Liệu Tham Khảo
+
+Các link này giúp người clone repo đọc thêm về những công nghệ đang được dùng.
+
+Công cụ nền:
+
+- [Git documentation](https://git-scm.com/doc)
+- [Node.js downloads](https://nodejs.org/en/download)
+- [npm documentation](https://docs.npmjs.com/)
+- [Python documentation](https://docs.python.org/3/)
+- [FFmpeg documentation](https://www.ffmpeg.org/documentation.html)
+
+Frontend:
+
+- [React documentation](https://react.dev/)
+- [Vite documentation](https://vite.dev/guide/)
+- [Tailwind CSS documentation](https://tailwindcss.com/docs)
+- [TanStack Query documentation](https://tanstack.com/query/latest/docs/framework/react/overview)
+- [React Flow documentation](https://reactflow.dev/)
+- [Axios documentation](https://axios-http.com/docs/intro)
+- [Lucide React icons](https://lucide.dev/guide/packages/lucide-react)
+
+Backend và API:
+
+- [FastAPI documentation](https://fastapi.tiangolo.com/)
+- [Uvicorn documentation](https://www.uvicorn.org/)
+- [Python multipart package](https://github.com/Kludex/python-multipart)
+
+AI và audio:
+
+- [PyTorch documentation](https://docs.pytorch.org/docs/stable/index.html)
+- [PyTorch install selector](https://pytorch.org/get-started/locally/)
+- [Torchaudio documentation](https://docs.pytorch.org/audio/stable/index.html)
+- [Hugging Face Transformers documentation](https://huggingface.co/docs/transformers/index)
+- [Hugging Face Hub Python library](https://huggingface.co/docs/huggingface_hub/index)
+- [python-soundfile documentation](https://python-soundfile.readthedocs.io/)
+- [pydub GitHub repository](https://github.com/jiaaro/pydub)
+- [OmniVoice GitHub repository](https://github.com/k2-fsa/OmniVoice)
+- [OmniVoice model on Hugging Face](https://huggingface.co/k2-fsa/OmniVoice)
+
+Gemini và Chrome extension:
+
+- [Gemini CLI GitHub repository](https://github.com/google-gemini/gemini-cli)
+- [Gemini CLI getting started docs](https://github.com/google-gemini/gemini-cli/blob/main/docs/get-started/index.md)
+- [Chrome Extensions documentation](https://developer.chrome.com/docs/extensions)
+- [Chrome Extensions getting started](https://developer.chrome.com/docs/extensions/mv3/getstarted)
+- [Google Flow](https://labs.google/fx/tools/flow)
+
+## Cảm Ơn
+
+- Cảm ơn [crisng95/flowkit](https://github.com/crisng95/flowkit) vì ý tưởng/tham khảo cho extension FlowKit.
 
 ## Prompt Tiếng Việt Cho AI Agent
 
