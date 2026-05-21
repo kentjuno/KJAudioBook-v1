@@ -9,5 +9,10 @@ omnivoice
 # Audio Processing
 pydub
 
+# Backend API
+fastapi
+uvicorn
+python-multipart
+
 # Utilities
 tqdm
