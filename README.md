@@ -12,6 +12,46 @@ Source-only public snapshot for reference, experimentation, and learning.
 
 This repository intentionally excludes generated media, local databases, virtual environments, node modules, private voice references, planning notes, and manuscript/reference content. The code may need local adjustment before it runs on another machine.
 
+## What Is This?
+
+AudioBook KJ is an experimental AI audiobook/video studio. The goal is to explore a workflow where long-form text can be cleaned, structured, converted into narrated audio, arranged on a media timeline, connected with generated visual assets, and exported as an audiobook/video project.
+
+This is not a polished production app. It is a public source snapshot for people who want to study the architecture, borrow ideas, or see how a React frontend, Python backend, AI helpers, audio processing, and a Chrome extension can be wired together.
+
+## App Workflows
+
+The project is built around these rough workflows:
+
+1. **Script import and cleanup**
+
+   Bring text/script content into the app, clean markdown, split long content into chunks, and optionally call Gemini CLI helper flows to rewrite, enhance, or normalize script sections.
+
+2. **AI direction and metadata**
+
+   Extract useful entities, character references, scene hints, and storyboard-like metadata. These helpers are experimental and may require Gemini CLI.
+
+3. **Text-to-speech generation**
+
+   Convert script lines into audio clips using the Python backend and local TTS/model tooling. Private voice reference files are intentionally not included in this public repo.
+
+4. **Audio timeline and mixing**
+
+   Arrange narration, music, and sound effect clips; mix audio with Python tools such as pydub; use FFmpeg where export or media rendering requires it.
+
+5. **Video/visual asset workflow**
+
+   Manage generated or imported visual assets and connect them to scenes/timeline clips. Generated images and videos are excluded from the public repo.
+
+6. **FlowKit browser bridge**
+
+   The local Chrome extension can bridge browser-based Google Flow workflows with the local backend. This part is experimental and should be reviewed carefully before use.
+
+7. **Export**
+
+   Combine audio/video assets into final outputs. Exported media is ignored by Git to keep the repo small and clean.
+
+In short: the repo is a playground for building an AI-assisted audiobook/video production pipeline, not a ready-to-sell product.
+
 ## Prerequisites
 
 Install these before trying to run the app:
@@ -184,6 +224,16 @@ Gemini and browser extension:
 
 - Thanks to [crisng95/flowkit](https://github.com/crisng95/flowkit) for the FlowKit extension idea/reference.
 
+## Donate / Support
+
+If this repo gives you ideas, saves you time, or helps you build your own AI media workflow, donations are welcome.
+
+Support gives me more time to clean up version 1, write better docs, fix rough edges, and add more useful features. If the project gets enough support, I may also public a more polished version 2 later.
+
+<img src="docs/assets/readme/donate-vietqr.jpg" alt="Donate with VietQR" width="360" />
+
+No pressure though. Starring the repo, sharing feedback, opening issues, or showing what you build from it also helps a lot.
+
 ## AI Agent Setup Prompt
 
 Copy this prompt into any coding AI agent after cloning the repository:
@@ -259,12 +309,6 @@ pip install fastapi uvicorn python-multipart
 python server.py
 ```
 
-extension ref: https://github.com/crisng95/flowkit
-
-Please donate for version 2: 
-<img width="319" height="432" alt="image" src="https://github.com/user-attachments/assets/20b6fe89-20a9-4f24-8ad0-636bd4ca4835" />
-
-
 These commands are starting points only. Let the AI agent inspect the current machine and adjust them.
 
 ---
@@ -280,6 +324,46 @@ These commands are starting points only. Let the AI agent inspect the current ma
 Đây là bản source public để tham khảo ý tưởng, học hỏi và thử nghiệm.
 
 Repo này cố tình không đưa lên các file media đã generate, database local, virtual environment, `node_modules`, voice reference riêng tư, ghi chú planning, manuscript và tài liệu tham khảo. Vì vậy app có thể cần chỉnh lại đôi chút trước khi chạy trên máy khác.
+
+## Đây Là App Gì?
+
+AudioBook KJ là một project thử nghiệm dạng AI audiobook/video studio. Mục tiêu là thử workflow biến nội dung dài thành script sạch hơn, chia đoạn, tạo audio narration, quản lý timeline/media, kết nối với asset hình/video được generate, rồi export thành một project audiobook/video.
+
+Đây không phải app production hoàn chỉnh. Repo này public chủ yếu để anh em tham khảo kiến trúc, lấy ý tưởng workflow, hoặc xem cách nối React frontend, Python backend, AI helper, audio processing và Chrome extension lại với nhau.
+
+## Các Workflow Chính Của App
+
+Project xoay quanh các workflow sau:
+
+1. **Import và dọn script**
+
+   Đưa text/script vào app, clean markdown, chia nội dung dài thành chunk, và có thể gọi Gemini CLI để rewrite, enhance hoặc chuẩn hóa từng đoạn script.
+
+2. **AI direction và metadata**
+
+   Trích xuất entity, character reference, scene hint và metadata kiểu storyboard. Các helper này còn thử nghiệm và có thể cần Gemini CLI.
+
+3. **Tạo giọng đọc / text-to-speech**
+
+   Chuyển từng dòng script thành audio clip bằng backend Python và tooling TTS/model local. Các file voice reference riêng tư không được đưa vào repo public.
+
+4. **Timeline audio và mixing**
+
+   Sắp xếp narration, music, sound effect; mix audio bằng Python/pydub; dùng FFmpeg khi cần export hoặc render media.
+
+5. **Workflow hình/video asset**
+
+   Quản lý asset hình/video được import hoặc generate, rồi gắn chúng với scene/timeline clip. Media đã generate được ignore để repo nhẹ.
+
+6. **FlowKit browser bridge**
+
+   Chrome extension local có thể bridge workflow Google Flow trên browser với backend local. Phần này còn thử nghiệm, nên đọc kỹ code extension trước khi dùng.
+
+7. **Export**
+
+   Ghép audio/video asset thành output cuối. File export bị ignore khỏi Git để repo gọn và sạch.
+
+Nói ngắn gọn: đây là playground để thử xây pipeline sản xuất audiobook/video bằng AI, không phải sản phẩm hoàn thiện chạy một phát là dùng ngay.
 
 ## Phần Mềm Cần Cài Trước
 
@@ -450,6 +534,16 @@ Gemini và Chrome extension:
 ## Cảm Ơn
 
 - Cảm ơn [crisng95/flowkit](https://github.com/crisng95/flowkit) vì ý tưởng/tham khảo cho extension FlowKit.
+
+## Donate / Ủng Hộ
+
+Nếu repo này giúp anh em có ý tưởng, tiết kiệm thời gian, hoặc tự build được workflow AI media riêng thì có thể donate ủng hộ mình.
+
+Donate sẽ giúp mình có thêm thời gian dọn dẹp version 1, viết docs rõ hơn, sửa những chỗ còn thô, và update thêm nhiều tính năng mới. Nếu được ủng hộ nhiều, biết đâu mình public luôn version 2 polished hơn hehe.
+
+<img src="docs/assets/readme/donate-vietqr.jpg" alt="Ủng hộ qua VietQR" width="360" />
+
+Không donate cũng không sao nha. Star repo, góp ý, mở issue, hoặc khoe sản phẩm anh em build từ repo này cũng là một cách ủng hộ rất đáng quý rồi.
 
 ## Prompt Tiếng Việt Cho AI Agent
 
