@@ -6,6 +6,8 @@
 
 <a id="english"></a>
 
+![AudioBook KJ hero](docs/assets/readme/hero-audiobook-kj.jpg)
+
 Source-only public snapshot for reference, experimentation, and learning.
 
 This repository intentionally excludes generated media, local databases, virtual environments, node modules, private voice references, planning notes, and manuscript/reference content. The code may need local adjustment before it runs on another machine.
@@ -90,6 +92,8 @@ Notes:
 - If Gemini CLI is not installed, the main frontend can still be inspected, but Gemini-powered helper endpoints may fail.
 
 ## Chrome FlowKit Extension Setup
+
+![FlowKit extension workflow](docs/assets/readme/flowkit-extension-workflow.jpg)
 
 The repo includes a local unpacked Chrome extension at:
 
@@ -231,6 +235,8 @@ Please begin by listing the detected project structure and then propose the exac
 
 ## Likely Local Setup
 
+![AudioBook KJ setup flow](docs/assets/readme/setup-flow.jpg)
+
 The project appears to contain:
 
 - `frontend/`: Vite/React frontend.
@@ -268,6 +274,8 @@ These commands are starting points only. Let the AI agent inspect the current ma
 # AudioBook KJ - Bản Tiếng Việt
 
 [English](#english) | [Tiếng Việt](#tieng-viet) | [Phần Mềm Cần Cài](#phan-mem-can-cai-truoc) | [Cài Gemini CLI](#cai-gemini-cli) | [Cài Extension](#cai-chrome-extension-flowkit) | [Prompt AI Agent](#prompt-tieng-viet-cho-ai-agent) | [Lên đầu trang](#top)
+
+![AudioBook KJ hero](docs/assets/readme/hero-audiobook-kj.jpg)
 
 Đây là bản source public để tham khảo ý tưởng, học hỏi và thử nghiệm.
 
@@ -351,6 +359,8 @@ Lưu ý:
 - Nếu không cài Gemini CLI thì vẫn có thể đọc/chạy thử frontend, nhưng các endpoint helper dùng Gemini có thể lỗi.
 
 ## Cài Chrome Extension FlowKit
+
+![FlowKit extension workflow](docs/assets/readme/flowkit-extension-workflow.jpg)
 
 Repo có sẵn extension Chrome dạng unpacked tại:
 
@@ -491,6 +501,8 @@ Hãy bắt đầu bằng cách liệt kê cấu trúc project phát hiện đư�
 ```
 
 ## Setup Local Dự Kiến
+
+![AudioBook KJ setup flow](docs/assets/readme/setup-flow.jpg)
 
 Project có vẻ gồm:
 

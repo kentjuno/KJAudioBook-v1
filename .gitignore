@@ -57,6 +57,10 @@ recovered_logs.txt
 *.webp
 *.gif
 *.pdf
+!docs/
+!docs/assets/
+!docs/assets/readme/
+!docs/assets/readme/*.jpg
 audiobook_builder/output/
 audiobook_builder/outputs/
 audiobook_builder/temp/
