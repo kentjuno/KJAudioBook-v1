@@ -12,6 +12,27 @@ Source-only public snapshot for reference, experimentation, and learning.
 
 This repository intentionally excludes generated media, local databases, virtual environments, node modules, private voice references, planning notes, and manuscript/reference content. The code may need local adjustment before it runs on another machine.
 
+## One-Click Start For Windows
+
+For non-technical users on Windows:
+
+1. Download this repo as a ZIP or clone it.
+2. Extract the ZIP.
+3. Double-click:
+
+```text
+START_HERE.bat
+```
+
+The launcher will check for Git, Node.js, npm, Python, and FFmpeg. If something is missing, it will offer to install it with `winget`. Then it installs frontend/backend dependencies, creates the Python virtual environment, starts the backend, starts the frontend, and opens the browser.
+
+Notes:
+
+- Keep the backend and frontend terminal windows open while using the app.
+- Backend AI/TTS dependencies can be large and may take a long time to install.
+- If `winget` installs a tool but the launcher still cannot find it, close the terminal and run `START_HERE.bat` again.
+- Gemini CLI and the Chrome FlowKit extension are still optional and described below.
+
 ## What Is This?
 
 AudioBook KJ is an experimental AI audiobook/video studio. The goal is to explore a workflow where long-form text can be cleaned, structured, converted into narrated audio, arranged on a media timeline, connected with generated visual assets, and exported as an audiobook/video project.
@@ -261,18 +282,20 @@ Repository context:
 - Gemini CLI and Chrome/Chromium are optional unless I want to use Gemini helper flows or the FlowKit extension.
 - Gemini CLI can be installed with `npm install -g @google/gemini-cli`; verify with `gemini --version`.
 - The Chrome extension can be loaded unpacked from `audiobook_builder/flowkit_extension` via `chrome://extensions`.
+- On Windows, try `START_HERE.bat` first for one-click setup and launch.
 
 Suggested workflow:
 1. Check `git`, `node`, `npm`, `python`, and `ffmpeg` versions.
-2. If Gemini features are requested, check `gemini --version`; otherwise mark Gemini as optional.
-3. If FlowKit browser features are requested, explain how to load the Chrome extension from `audiobook_builder/flowkit_extension`.
-4. Read README files, package files, requirements files, and obvious app entry points.
-5. Check the frontend folder for package.json and install frontend dependencies.
-6. Check the audiobook_builder folder for Python requirements and create a local virtual environment.
-7. Look for .env usage and create a local .env.example or .env only with placeholders.
-8. Start backend and frontend separately if applicable.
-9. If startup fails because ignored assets or databases are missing, create minimal placeholders or explain what is missing.
-10. Summarize the final setup commands and how to run the app.
+2. On Windows, inspect and consider using `START_HERE.bat` for one-click setup.
+3. If Gemini features are requested, check `gemini --version`; otherwise mark Gemini as optional.
+4. If FlowKit browser features are requested, explain how to load the Chrome extension from `audiobook_builder/flowkit_extension`.
+5. Read README files, package files, requirements files, and obvious app entry points.
+6. Check the frontend folder for package.json and install frontend dependencies.
+7. Check the audiobook_builder folder for Python requirements and create a local virtual environment.
+8. Look for .env usage and create a local .env.example or .env only with placeholders.
+9. Start backend and frontend separately if applicable.
+10. If startup fails because ignored assets or databases are missing, create minimal placeholders or explain what is missing.
+11. Summarize the final setup commands and how to run the app.
 
 Constraints:
 - Do not commit secrets.
@@ -324,6 +347,27 @@ These commands are starting points only. Let the AI agent inspect the current ma
 Đây là bản source public để tham khảo ý tưởng, học hỏi và thử nghiệm.
 
 Repo này cố tình không đưa lên các file media đã generate, database local, virtual environment, `node_modules`, voice reference riêng tư, ghi chú planning, manuscript và tài liệu tham khảo. Vì vậy app có thể cần chỉnh lại đôi chút trước khi chạy trên máy khác.
+
+## Chạy Một Click Trên Windows
+
+Dành cho người không rành kỹ thuật:
+
+1. Download repo dạng ZIP hoặc clone repo.
+2. Giải nén ZIP.
+3. Double-click file:
+
+```text
+START_HERE.bat
+```
+
+Launcher này sẽ kiểm tra Git, Node.js, npm, Python và FFmpeg. Nếu thiếu phần nào, nó sẽ hỏi để cài bằng `winget`. Sau đó nó cài dependency frontend/backend, tạo Python virtual environment, start backend, start frontend và mở browser.
+
+Lưu ý:
+
+- Giữ hai cửa sổ terminal backend/frontend mở khi dùng app.
+- Dependency AI/TTS của backend có thể khá nặng và cài lâu.
+- Nếu `winget` cài xong nhưng launcher vẫn chưa nhận ra tool mới, hãy đóng terminal rồi chạy lại `START_HERE.bat`.
+- Gemini CLI và Chrome FlowKit extension vẫn là optional, hướng dẫn nằm bên dưới.
 
 ## Đây Là App Gì?
 
@@ -572,18 +616,20 @@ Ngữ cảnh repo:
 - Gemini CLI và Chrome/Chromium là optional, trừ khi tôi muốn dùng Gemini helper flow hoặc FlowKit extension.
 - Gemini CLI có thể cài bằng `npm install -g @google/gemini-cli`; kiểm tra bằng `gemini --version`.
 - Chrome extension có thể load unpacked từ `audiobook_builder/flowkit_extension` trong `chrome://extensions`.
+- Trên Windows, nên thử `START_HERE.bat` trước để setup và chạy app một click.
 
 Workflow đề xuất:
 1. Kiểm tra version của `git`, `node`, `npm`, `python`, `ffmpeg`.
-2. Nếu tôi muốn dùng tính năng Gemini, kiểm tra `gemini --version`; nếu không thì đánh dấu Gemini là optional.
-3. Nếu tôi muốn dùng tính năng FlowKit trên browser, hướng dẫn load Chrome extension từ `audiobook_builder/flowkit_extension`.
-4. Đọc README, package files, requirements files và các entry point rõ ràng.
-5. Kiểm tra folder frontend có package.json và cài dependency frontend.
-6. Kiểm tra folder audiobook_builder có requirements Python và tạo virtual environment local.
-7. Tìm cách dùng .env và tạo .env.example hoặc .env local chỉ với placeholder.
-8. Start backend và frontend riêng nếu phù hợp.
-9. Nếu startup fail vì thiếu asset/database/output bị ignore, tạo placeholder tối thiểu hoặc giải thích đang thiếu gì.
-10. Tóm tắt lại command setup cuối cùng và cách chạy app.
+2. Trên Windows, đọc và cân nhắc dùng `START_HERE.bat` để setup một click.
+3. Nếu tôi muốn dùng tính năng Gemini, kiểm tra `gemini --version`; nếu không thì đánh dấu Gemini là optional.
+4. Nếu tôi muốn dùng tính năng FlowKit trên browser, hướng dẫn load Chrome extension từ `audiobook_builder/flowkit_extension`.
+5. Đọc README, package files, requirements files và các entry point rõ ràng.
+6. Kiểm tra folder frontend có package.json và cài dependency frontend.
+7. Kiểm tra folder audiobook_builder có requirements Python và tạo virtual environment local.
+8. Tìm cách dùng .env và tạo .env.example hoặc .env local chỉ với placeholder.
+9. Start backend và frontend riêng nếu phù hợp.
+10. Nếu startup fail vì thiếu asset/database/output bị ignore, tạo placeholder tối thiểu hoặc giải thích đang thiếu gì.
+11. Tóm tắt lại command setup cuối cùng và cách chạy app.
 
 Ràng buộc:
 - Không commit secret.
